@@ -1458,7 +1458,7 @@ def	GetFigureEntropyRT_vs_tau(TypeCal, molecule_rot, TransMove, RotMove, variabl
 	plt.savefig(outfileEntropy, dpi = 200, format = 'eps')
 	plt.show()
 
-def	GetFigureEntropyRT_vs_gFactor_COMBO(TypeCal, molecule_rot, TransMove, RotMove, variableName, Rpt, parameterName, parameter, numbblocks, numbpass, molecule, ENT_TYPE_LIST, preskip1, postskip1, extra_file_name, src_dir, TypePlot, beadsRef, numbmolecules):
+def	GetFigureEntropyRT_vs_gFactor_COMBO(TypeCal, molecule_rot, TransMove, RotMove, variableName, Rpt, parameterName, parameter, numbblocks, numbpass, molecule, ENT_TYPE_LIST, preskip1, postskip1, extra_file_name, src_dir, TypePlot, beadsRef, numbmolecules,purpose):
 	'''
 	The below 4 parameters are defined arbitrarily 
 	as "support.GetFileNamePlot" function needs! 
@@ -1469,7 +1469,11 @@ def	GetFigureEntropyRT_vs_gFactor_COMBO(TypeCal, molecule_rot, TransMove, RotMov
 	#-------------------------------------------------#
 	# Here some parameters are defined for the Figure!
 	#-------------------------------------------------#
-	font          = 28
+	if (purpose == "article"):
+		font      = 28
+	elif (purpose == "ppt"):
+		font      = 40
+		rc('axes', linewidth=2)
 	fontlegend    = font/2.0
 	fig           = plt.figure(figsize=(8, 6))
 	#plt.grid(True)
@@ -1479,7 +1483,7 @@ def	GetFigureEntropyRT_vs_gFactor_COMBO(TypeCal, molecule_rot, TransMove, RotMov
 	#------------------------------------------------#
 	FigLabel   = {2:'a', 4:'b', 8:'c'}
 	FilePlotName    = support.GetFileNamePlot(TypeCal, molecule_rot, TransMove, RotMove, variableName, Rpt, gfact, dipolemoment, parameterName, parameter, numbblocks, numbpass, numbmolecules, molecule, "", preskip1, postskip1, extra_file_name, src_dir, particleA, beadsRef)
-	FilePlotEntropy = FilePlotName.SaveEntropyCOMBO+"-"+FigLabel[numbmolecules]+".eps"
+	FilePlotEntropy = FilePlotName.SaveEntropyCOMBO+"-"+FigLabel[numbmolecules]+"-"+purpose+".eps"
 	outfileEntropy  = FilePlotEntropy
 	print(outfileEntropy)
 	call(["rm", FilePlotEntropy])
@@ -1528,7 +1532,7 @@ def	GetFigureEntropyRT_vs_gFactor_COMBO(TypeCal, molecule_rot, TransMove, RotMov
 
 			beads1, var1, purity1, entropy1, err_purity1, err_entropy1 = genfromtxt(FileToBePlotEntropy,unpack=True, usecols=[0, 1, 2, 3, 4, 5], skip_header=0, skip_footer=0)
 
-			entropyFit,errorFit = GetFitPurity(FileToBePlotEntropy,numbmolecules,"g")
+			entropyFit,errorFit = GetFitPurity(FileToBePlotEntropy,numbmolecules,"g", gfact)
 			entropyFitPlot[iLabel,iii] = -math.log(entropyFit)
 			errorFitPlot[iLabel,iii]   = abs(errorFit/entropyFit)
 
@@ -1556,7 +1560,10 @@ def	GetFigureEntropyRT_vs_gFactor_COMBO(TypeCal, molecule_rot, TransMove, RotMov
 #
 	iLabel = 0
 	gFactorPlot      = gFactorList
-	textLabel        = {'SWAPTOUNSWAP':'Swap+Unswap grand ensemble', 'BROKENPATH':'Broken path ensemble'}
+	if (purpose == "article"):
+		textLabel        = {'SWAPTOUNSWAP':'Swap+Unswap grand ensemble', 'BROKENPATH':'Broken path ensemble'}
+	elif (purpose == "ppt"):
+		textLabel        = {'SWAPTOUNSWAP':'Swap+Unswap', 'BROKENPATH':'Broken path'}
 	for ENT_TYPE in ENT_TYPE_LIST:
 		labelString = textLabel[ENT_TYPE]
 		#plt.errorbar(gFactorPlot, entropy1Plot[iLabel,:], yerr=err_entropy1Plot[iLabel,:], color = colorList[iLabel], ls = 'None', linewidth=1,  marker = markerList[iLabel], markersize = 8, label = labelString)
@@ -1603,25 +1610,42 @@ def	GetFigureEntropyRT_vs_gFactor_COMBO(TypeCal, molecule_rot, TransMove, RotMov
 		
 	plt.plot(gFactDMRG[cutDataDMRG[numbmolecules]:-110], EntropyDMRG[cutDataDMRG[numbmolecules]:-110], color = 'black', ls = '-', linewidth=2,  marker = 'None', markersize = 8, label = labelStringDMRG)
 # DMRG section ends here
-	plt.xlabel(r'$g$', fontsize = font, labelpad=-3)
-	plt.ylabel(r'$S_{2}$', fontsize = font)
-
 	xmaxlim = {2:8.01, 4:3.01, 8:2.01}
 	xminlim = {2:0.0, 4:0.0, 8:0.0}
-	ymaxlim = {2:0.9, 4:0.8, 8:0.8}
+	ymaxlim = {2:9, 4:8, 8:8.0}
 	yminlim = {2:0.0, 4:0.0, 8:0.0}
-	xboxsize = {2:0.45, 4:0.45, 8:0.45}
-	yboxsize = {2:0.28, 4:0.28, 8:0.28}
-	TextLabel  = {2:r'$\mathrm{(a)}$', 4:r'$\mathrm{(b)}$', 8:r'$\mathrm{(c)}$', 16:r'$\mathrm{(d)}$', 32:r'$\mathrm{(e)}$'}
-	stepx = {2:1.0, 4:0.5, 8:0.25}
 	
-	plt.xticks(np.arange(xminlim[numbmolecules], xmaxlim[numbmolecules], step=stepx[numbmolecules]),fontsize=font, rotation=0)
-	plt.yticks(fontsize=font, rotation=0)
+	if (purpose == "article"):
+		plt.xlabel(r'$g$', fontsize = font, labelpad=-3)
+		plt.ylabel(r'$S_{2}$', fontsize = font)
+		TextLabel  = {2:r'$\mathrm{(a)}$', 4:r'$\mathrm{(b)}$', 8:r'$\mathrm{(c)}$', 16:r'$\mathrm{(d)}$', 32:r'$\mathrm{(e)}$'}
+		stepx = {2:1.0, 4:0.5, 8:0.25}
+		stepy = {2:0.1, 4:0.1, 8:0.1}
+		plt.xticks(np.arange(xminlim[numbmolecules], xmaxlim[numbmolecules], step=stepx[numbmolecules]),fontsize=font, rotation=0)
+		plt.yticks(fontsize=font, rotation=0)
+		xboxsize = {2:0.45, 4:0.45, 8:0.45}
+		yboxsize = {2:0.28, 4:0.28, 8:0.28}
+	elif (purpose == "ppt"):
+		plt.xlabel(r'$g$', fontsize = font, labelpad= -8)
+		plt.ylabel(r'$S_{2}$', fontsize = font, labelpad=2)
+		TextLabel  = {2:'', 4:'', 8:'', 16:'', 32:''}
+		stepx = {2:1.0, 4:0.5, 8:0.5}
+		stepy = {2:0.2, 4:0.2, 8:0.2}
+		plt.xticks(np.arange(xminlim[numbmolecules], xmaxlim[numbmolecules], step=stepx[numbmolecules]),fontsize=font, rotation=0)
+		plt.yticks(np.arange(yminlim[numbmolecules], ymaxlim[numbmolecules], step=stepy[numbmolecules]),fontsize=font, rotation=0)
+		xboxsize = {2:0.5, 4:0.5, 8:0.5}
+		yboxsize = {2:0.4, 4:0.4, 8:0.4}
 
-	xmaxlim = {2:8.01, 4:3.01, 8:2.01}
-	xminlim = {2:0.0, 4:0.4, 8:0.4}
-	ymaxlim = {2:0.9, 4:0.8, 8:0.8}
-	yminlim = {2:0.0, 4:0.0, 8:0.0}
+	if (purpose == "article"):
+		xmaxlim = {2:8.01, 4:3.01, 8:2.01}
+		xminlim = {2:0.0, 4:0.4, 8:0.4}
+		ymaxlim = {2:0.91, 4:0.801, 8:0.801}
+		yminlim = {2:0.0, 4:0.0, 8:0.0}
+	elif (purpose == "ppt"):
+		xmaxlim = {2:8.01, 4:3.01, 8:2.01}
+		xminlim = {2:0.0, 4:0.4, 8:0.4}
+		ymaxlim = {2:0.84, 4:0.84, 8:0.84}
+		yminlim = {2:0.0, 4:0.0, 8:0.0}
 	plt.xlim(xminlim[numbmolecules], xmaxlim[numbmolecules])
 	plt.ylim(yminlim[numbmolecules], ymaxlim[numbmolecules])
 	ymin, ymax = plt.ylim()
@@ -1630,8 +1654,12 @@ def	GetFigureEntropyRT_vs_gFactor_COMBO(TypeCal, molecule_rot, TransMove, RotMov
 	plt.text((xmin+(xmax-xmin)*0.01),ymax-(ymax-ymin)*0.08, TextLabel[numbmolecules], fontsize=font)
 	plt.text((xmin+(xmax-xmin)*0.4), ymax-(ymax-ymin)*0.1, r'$N = \ $'+str(numbmolecules), fontsize = font) 
 
-	plt.subplots_adjust(top=0.97, bottom=0.14, left=0.14, right=0.96, hspace=0.0, wspace=0.0)
-	plt.legend(bbox_to_anchor=(xboxsize[numbmolecules], yboxsize[numbmolecules]), loc=2, borderaxespad=1., shadow=True, fontsize = fontlegend)
+	if (purpose == "article"):
+		plt.subplots_adjust(top=0.97, bottom=0.14, left=0.14, right=0.96, hspace=0.0, wspace=0.0)
+		plt.legend(bbox_to_anchor=(xboxsize[numbmolecules], yboxsize[numbmolecules]), loc=2, borderaxespad=1., shadow=True, fontsize = fontlegend)
+	elif (purpose == "ppt"):
+		plt.subplots_adjust(top=0.97, bottom=0.18, left=0.18, right=0.96, hspace=0.0, wspace=0.0)
+		plt.legend(bbox_to_anchor=(xboxsize[numbmolecules], yboxsize[numbmolecules]), loc=2, borderaxespad=1., shadow=True, fontsize = fontlegend)
 	plt.savefig(outfileEntropy, dpi = 200, format = 'eps')
 	plt.show()
 

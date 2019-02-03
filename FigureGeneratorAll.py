@@ -29,9 +29,9 @@ TypeCal             = 'ENT'
 #TypePlot            = "Energy"
 #TypePlot            = "ChemPot"
 #TypePlot            = "CorrFunc"
-TypePlot            = "S2"
-TypePlot            = "GFACTOR"
-#TypePlot            = "COMBINE"
+#TypePlot            = "S2"
+#TypePlot            = "GFACTOR"
+TypePlot            = "COMBINE"
 #TypePlot            = "COMPARE"
 #
 #molecule            = "HFC60"                                                  
@@ -40,6 +40,8 @@ molecule            = "HF"
 molecule_rot        = "HF"
 #
 Rpt                 = 10.05
+#purpose             = "article"
+purpose             = "ppt"
 
 user_name           = "tsahoo"
 final_results_path  = "/Users/"+user_name+"/ResultsOf"+TypeCal+"/"
@@ -102,7 +104,7 @@ if (TypeCal == "ENT" and TypePlot == "COMBINE"):
 	beta                = 0.2
 	parameter           = beta
 	numbmolecules       = 8
-	FigureGenerator.GetFigureEntropyRT_vs_gFactor_COMBO(TypeCal, molecule_rot, TransMove, RotMove, variableName, Rpt, parameterName, parameter, numbblocks, numbpass, molecule, ENT_TYPE, preskip, postskip, extra_file_name, final_results_path, TypePlot, beadsRef, numbmolecules)
+	FigureGenerator.GetFigureEntropyRT_vs_gFactor_COMBO(TypeCal, molecule_rot, TransMove, RotMove, variableName, Rpt, parameterName, parameter, numbblocks, numbpass, molecule, ENT_TYPE, preskip, postskip, extra_file_name, final_results_path, TypePlot, beadsRef, numbmolecules,purpose)
 
 if (TypeCal == "ENT" and TypePlot == "COMPARE"):
 	beadsRef            = 61
