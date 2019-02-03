@@ -31,8 +31,8 @@ TypeCal             = 'ENT'
 #TypePlot            = "CorrFunc"
 #TypePlot            = "S2"
 #TypePlot            = "GFACTOR"
-TypePlot            = "COMBINE"
-#TypePlot            = "COMPARE"
+#TypePlot            = "COMBINE" # Comparision of "Broken Path ensemble" and "Swap+Unswap grand ensemble" methodologies
+TypePlot            = "COMPARE" # Importance of "ratio trick" algorithm to "Swap+Unswap grand ensemble"
 #
 #molecule            = "HFC60"                                                  
 molecule            = "HF"                                                      
@@ -125,7 +125,7 @@ if (TypeCal == "ENT" and TypePlot == "COMPARE"):
 		print("Minimum value of No. of rotors must be >= 4 ")
 		exit()
 	ENT_TYPE = "SWAPTOUNSWAP"
-	FigureGenerator.GetFigureEntropyRT_vs_gFactor_COMPARE(TypeCal, ENT_TYPE, molecule_rot, TransMove, RotMove, variableName, Rpt, parameterName, parameter, numbblocks, numbpass, molecule, algorithm, preskip, postskip, extra_file_name, final_results_path, TypePlot, beadsRef, numbmolecules)
+	FigureGenerator.GetFigureEntropyRT_vs_gFactor_COMPARE(TypeCal, ENT_TYPE, molecule_rot, TransMove, RotMove, variableName, Rpt, parameterName, parameter, numbblocks, numbpass, molecule, algorithm, preskip, postskip, extra_file_name, final_results_path, TypePlot, beadsRef, numbmolecules,purpose)
 
 '''
 if (TypeCal == "ENT" and TypePlot == "GFACTOR" or TypePlot == "S2"):
