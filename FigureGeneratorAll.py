@@ -30,9 +30,9 @@ TypeCal             = 'ENT'
 #TypePlot            = "ChemPot"
 #TypePlot            = "CorrFunc"
 #TypePlot            = "S2"
-#TypePlot            = "GFACTOR"
+TypePlot            = "GFACTOR"
 #TypePlot            = "COMBINE" # Comparision of "Broken Path ensemble" and "Swap+Unswap grand ensemble" methodologies
-TypePlot            = "COMPARE" # Importance of "ratio trick" algorithm to "Swap+Unswap grand ensemble"
+#TypePlot            = "COMPARE" # Importance of "ratio trick" algorithm to "Swap+Unswap grand ensemble"
 #
 #molecule            = "HFC60"                                                  
 molecule            = "HF"                                                      
