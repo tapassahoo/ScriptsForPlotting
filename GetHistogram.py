@@ -1,4 +1,3 @@
-#!/usr/bin/python
 #!/usr/bin/env python
 import math
 from math import *
@@ -14,7 +13,7 @@ from scipy.optimize import curve_fit
 from subprocess import call
 from matplotlib.backends.backend_pdf import PdfPages
 from matplotlib.ticker import ScalarFormatter
-import support
+import support_without_parallel as support
 import os
  
 import matplotlib.mlab as mlab
@@ -26,22 +25,35 @@ natom = int(sys.argv[1])
 nbead = int(sys.argv[2])
 naxis = int(sys.argv[3])
 
-ncol1 = nbead + (natom-1)*3 # We have considered 0, M, N-1 beads
-ncol  = naxis + (ncol1-1)*2 # Here we have taken cost and phi
-print(ncol1)
+#ncol1 = nbead + (natom-1)*3 # We have considered 0, M, N-1 beads
+#ncol  = naxis + (ncol1-1)*2 # Here we have taken cost and phi
+#print(ncol1)
+ncol = nbead + (natom-1)*2 # We have considered 0, M, N-1 beads
 print(ncol)
 
 num_bins = 50
-#file1 = "/work/tapas/test-cluster-update/PIGS-cluster-update-correct-RotDOFs-Rpt10.05Angstrom-gFactor1.0-beta0.2Kinv-Blocks5000-Passes100-System8HF-e0vsbeads11/results/output_instant.dof"
-#file2 = "/work/tapas/test-cluster-update/PIMC-RotDOFs-Rpt10.05Angstrom-gFactor1.0-beta0.2Kinv-Blocks5000-Passes100-System8HF-e0vsbeads11/results/output_instant.dof"
-file1 = "/work/tapas/test-cluster-update/PIMC-cluster-update-RotDOFs-Rpt10.05Angstrom-DipoleMoment8.0Debye-beta0.05Kinv-Blocks50000-Passes100-System1HF-e0vsbeads16/results/output_instant.dof"
-file2 = "/work/tapas/test-cluster-update/PIMC-RotDOFs-Rpt10.05Angstrom-DipoleMoment8.0Debye-beta0.05Kinv-Blocks50000-Passes100-System1HF-e0vsbeads16/results/output_instant.dof"
-x = loadtxt(file1, unpack=True, usecols=[ncol])
-y = loadtxt(file2, unpack=True, usecols=[ncol])
-x = np.fmod(x,2.0*pi)
-y = np.fabs(np.fmod(y,2.0*pi))
-plt.hist(x, bins='auto', normed=1, facecolor='blue', alpha=0.7, label = "PIMC-CL")
-plt.hist(y, bins='auto', normed=1, facecolor='green', alpha=0.7, label = "PIMC")
+file1 = "/Users/tsahoo/mount_graham/ENT-RotDOFs-Rpt10.05Angstrom-gFactor2.0-beta0.2Kinv-Blocks21000-Passes100-System2HF-ParticleA1-e0vsbeads-SWAPTOUNSWAP21/results/output_instant.dof"
+file2 = "/Users/tsahoo/mount_graham/ENT-RotDOFs-Rpt10.05Angstrom-gFactor4.0-beta0.2Kinv-Blocks21000-Passes100-System2HF-ParticleA1-e0vsbeads-SWAPTOUNSWAP21/results/output_instant.dof"
+file3 = "/Users/tsahoo/mount_graham/ENT-RotDOFs-Rpt10.05Angstrom-gFactor6.0-beta0.2Kinv-Blocks21000-Passes100-System2HF-ParticleA1-e0vsbeads-SWAPTOUNSWAP21/results/output_instant.dof"
+x1 = loadtxt(file1, unpack=True, usecols=[ncol])
+x2 = loadtxt(file2, unpack=True, usecols=[ncol])
+x3 = loadtxt(file3, unpack=True, usecols=[ncol])
+#x = np.fmod(x,2.0*pi)
+#y = np.fabs(np.fmod(y,2.0*pi))
+
+# Normalize
+kwargs = dict(alpha=0.9, bins='auto', density=True, stacked=True)
+
+# Plot
+plt.hist(x1, **kwargs, color='g', label='g=2')
+plt.hist(x2, **kwargs, color='b', label='g=4')
+plt.hist(x3, **kwargs, color='y', label='g=6')
+plt.gca().set(title='Probability Histogram of Diamond Depths', ylabel='Probability')
+#plt.xlim(50,75)
+plt.legend();
+
+#plt.hist(x, bins='auto', density=True, facecolor='blue', alpha=0.7, label = "PIGS-ENT")
+#plt.hist(y, bins='auto', normed=1, facecolor='green', alpha=0.7, label = "PIMC")
 plt.xlabel('bins')
 plt.ylabel('Probability Distribution')
 

@@ -40,8 +40,8 @@ molecule            = "HF"
 molecule_rot        = "HF"
 #
 Rpt                 = 10.05
-#purpose             = "article"
-purpose             = "ppt"
+purpose             = "article"
+#purpose             = "ppt"
 
 user_name           = "tsahoo"
 final_results_path  = "/Users/"+user_name+"/ResultsOf"+TypeCal+"/"
@@ -62,25 +62,26 @@ if (TypeCal == "ENT" and TypePlot == "GFACTOR"):
 
 	plotNumber          = 2
 
-	FigureGenerator.GetFigureEntropyRT_vs_gFactor(TypeCal, molecule_rot, TransMove, RotMove, variableName, Rpt, parameterName, parameter, numbblocks, numbpass, molecule, ENT_TYPE, preskip, postskip, extra_file_name, final_results_path, TypePlot, beadsRef, plotNumber)
+	FigureGenerator.GetFigureEntropyRT_vs_gFactor(TypeCal, molecule_rot, TransMove, RotMove, variableName, Rpt, parameterName, parameter, numbblocks, numbpass, molecule, ENT_TYPE, preskip, postskip, extra_file_name, final_results_path, TypePlot, beadsRef, plotNumber,purpose)
 
 if (TypeCal == "ENT" and TypePlot == "S2"):
-	numbmolecules       = 16
+	numbmolecules       = 32
 	numbblocks	        = 20000
 	numbpass            = 100
 	preskip             = 10000
 	postskip            = 0
 
-	#extra_file_name     = "Ratio-Trick-"
-	extra_file_name     = ""
+	extra_file_name     = "Ratio-Trick-"
+	#extra_file_name     = ""
 	ENT_TYPE 			= "SWAPTOUNSWAP"
 
 	if (variableName == "beta"):
 		parameterName       = "tau"
-		tau                 = 0.005
-		#tau                 = 0.02
+		#tau                 = 0.005
+		tau                 = 0.02
 		parameter           = tau
 
+		print("TAPAS")
 		FigureGenerator.GetFigureEntropyRT_vs_beta(TypeCal, molecule_rot, TransMove, RotMove, variableName, Rpt, parameterName, parameter, numbblocks, numbpass, molecule, ENT_TYPE, preskip, postskip, extra_file_name, final_results_path, TypePlot, numbmolecules)
 
 	if (variableName == "tau"):

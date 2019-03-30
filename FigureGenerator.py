@@ -1070,7 +1070,7 @@ def	FigureAngleDistributionGfactor(TypeCal, molecule_rot, TransMove, RotMove, va
 		#call(["open", outfile])
 		plt.show()
 
-def	GetFigureEntropyRT_vs_gFactor(TypeCal, molecule_rot, TransMove, RotMove, variableName, Rpt, parameterName, parameter, numbblocks, numbpass, molecule, ENT_TYPE, preskip1, postskip1, extra_file_name, src_dir, TypePlot, beadsRef,plotNumber):
+def	GetFigureEntropyRT_vs_gFactor(TypeCal, molecule_rot, TransMove, RotMove, variableName, Rpt, parameterName, parameter, numbblocks, numbpass, molecule, ENT_TYPE, preskip1, postskip1, extra_file_name, src_dir, TypePlot, beadsRef,plotNumber,purpose):
 	'''
 	The below 4 parameters are defined arbitrarily 
 	as "support.GetFileNamePlot" function needs! 
@@ -1093,10 +1093,11 @@ def	GetFigureEntropyRT_vs_gFactor(TypeCal, molecule_rot, TransMove, RotMove, var
 	plt.axhline(y=log(2.0), color='green', lw = 2.0, linestyle='-.', label = 'ln(2)')
 	#------------------------------------------------#
 	nnDict = {1:[2,4],2:[8,16,32]}
+	#nnDict = {1:[2,4],2:[8,16]}
 	FigLabel = {1:'a', 2:'b'}
 	var             = beadsRef
 	FilePlotName    = support.GetFileNamePlot(TypeCal, molecule_rot, TransMove, RotMove, variableName, Rpt, gfact, dipolemoment, parameterName, parameter, numbblocks, numbpass, numbmolecules, molecule, ENT_TYPE, preskip1, postskip1, extra_file_name, src_dir, particleA, var)
-	FilePlotEntropy = FilePlotName.SaveEntropyGFACFit+"-"+FigLabel[plotNumber]+".eps"
+	FilePlotEntropy = FilePlotName.SaveEntropyGFACFit+"-"+FigLabel[plotNumber]+"-"+purpose+".eps"
 	print(FilePlotEntropy)
 	outfileEntropy  = FilePlotEntropy
 	call(["rm", FilePlotEntropy])
@@ -1110,12 +1111,13 @@ def	GetFigureEntropyRT_vs_gFactor(TypeCal, molecule_rot, TransMove, RotMove, var
 		
 		if (numbmolecules == 2):
 			#gFactorList  = [0.5+0.1*i for i in range(76)]  
-			gFactorList  = [0.6+0.2*i for i in range(36)]  
+			gFactorList  = [0.6+0.2*i for i in range(38)]  
+			gFactorList  += [9.0+1.0*i for i in range(18)]  
 		if (numbmolecules == 4):
 			#gFactorList  = [0.5+0.1*i for i in range(26)]  
-			gFactorList  = [0.5+0.1*i for i in range(25)]  
+			gFactorList  = [0.5+0.1*i for i in range(31)]  
 		if (numbmolecules == 8):
-			gFactorList  = [0.5+0.1*i for i in range(14)]  
+			gFactorList  = [0.5+0.1*i for i in range(16)]  
 		if (numbmolecules == 16):
 			gFactorList  = [0.5+0.1*i for i in range(10)]  
 		if (numbmolecules == 32):
@@ -1131,7 +1133,8 @@ def	GetFigureEntropyRT_vs_gFactor(TypeCal, molecule_rot, TransMove, RotMove, var
 		EntropyEDPlot    = np.zeros(len(gFactorList))
 		EntropyFitPlot   = np.zeros(len(gFactorList))
 		ErrorFitPlot     = np.zeros(len(gFactorList))
-		cutDataDMRG = {2:4, 4:100, 8:160, 16:195, 32:218}
+		#cutDataDMRG = {2:0, 4:27, 8:140, 16:195, 32:218}
+		cutDataDMRG = {2:0, 4:77, 8:140, 16:195, 32:218}
 
 		iii = 0
 		for gFact in gFactorList:
@@ -1198,17 +1201,23 @@ def	GetFigureEntropyRT_vs_gFactor(TypeCal, molecule_rot, TransMove, RotMove, var
 	plt.ylabel(r'$S_{2}$', fontsize = font)
 
 	if (nn[-1] >= 8):
-		plt.ylim(0.0,0.9)
+		plt.ylim(0.0,0.901)
 		Text1 = r'$\mathrm{(b)}$'
 	else:
-		plt.ylim(0.0,0.9)
+		plt.ylim(0.0,0.901)
 		Text1 = r'$\mathrm{(a)}$'
+	xminlim = {1:0.0, 2:0.0}
+	xmaxlim = {1:20.01, 2:20.01}
+	yminlim = {1:0.0, 2:0.0}
+	ymaxlim = {1:0.901, 2:0.901}
+	stepx   = {1:1.0, 2:0.25}
+	stepy   = {1:0.1, 2:0.1}
+	plt.xticks(np.arange(xminlim[plotNumber], xmaxlim[plotNumber], step=stepx[plotNumber]),fontsize=font, rotation=0)
+	plt.yticks(np.arange(yminlim[plotNumber], ymaxlim[plotNumber], step=stepy[plotNumber]),fontsize=font, rotation=0)
+
 	xminlim = {1:0.0, 2:0.5}
 	xmaxlim = {1:8.01, 2:2.01}
-	stepx   = {1:1.0, 2:0.25}
-	plt.xticks(np.arange(xminlim[plotNumber], xmaxlim[plotNumber], step=stepx[plotNumber]),fontsize=font, rotation=0)
-	plt.yticks(fontsize=font, rotation=0)
-
+	plt.xlim(xminlim[plotNumber], xmaxlim[plotNumber])
 	xmin, xmax = plt.xlim()
 	ymin, ymax = plt.ylim()
 	if Text1:
@@ -1281,12 +1290,12 @@ def	GetFigureEntropyRT_vs_beta(TypeCal, molecule_rot, TransMove, RotMove, variab
 	plt.xlabel(r'$\beta  (K^{-1})$', fontsize = font, labelpad=0)
 	plt.ylabel(r'$S_{2}$', fontsize = font)
 
-	xminlim = {0.005:0.0, 0.02:0.05}
-	xmaxlim = {0.005:0.2001, 0.02:0.4001}
-	stepx   = {0.005:0.04, 0.02:0.05}
-	yminlim = {0.005:0.0, 0.02:0.3}
-	ymaxlim = {0.005:0.7001, 0.02:1.001}
-	stepy   = {0.005:0.1, 0.02:0.1}
+	xminlim = {0.005:0.0, 0.02:0.05, 0.04:0.05}
+	xmaxlim = {0.005:0.2001, 0.02:0.4001, 0.04:0.4001}
+	stepx   = {0.005:0.04, 0.02:0.05, 0.04:0.5}
+	yminlim = {0.005:0.0, 0.02:0.3, 0.04:0.3}
+	ymaxlim = {0.005:0.7001, 0.02:1.001, 0.04:1.001}
+	stepy   = {0.005:0.1, 0.02:0.1, 0.04:0.2}
 	
 	plt.xticks(np.arange(xminlim[parameter], xmaxlim[parameter], step=stepx[parameter]),fontsize=font, rotation=0)
 	plt.yticks(np.arange(yminlim[parameter], ymaxlim[parameter], step=stepy[parameter]),fontsize=font, rotation=0)
@@ -1313,7 +1322,7 @@ def fitFuncEntropy(var, a, b, c):
 	return a+b*var*var+c*var*var*var
 
 def fitFuncEntropy1(var, a, b):
-	return a+b*var*var*var
+	return a+b*var*var
 
 #def plotfittingEntropy(val1, val2, val3):
 #	markersize_fig = 10
@@ -1323,45 +1332,78 @@ def fitFuncEntropy1(var, a, b):
 
 def GetFitPurity(fname,numbmolecules, variableName, gFact):
 	data      = np.loadtxt(fname)
-	if (int(data[0,0]) == 5):
-		xdata     = data[1:,1]
-		ydata     = data[1:,2]
-		ydata_err = data[1:,4]
+	listOfBeads=list(data[:,0])
+	cutoff     = {2:21, 4:11, 8:11, 16:5, 32:5}
+	GetIndex  = listOfBeads.index(cutoff[numbmolecules])
+	xdata     = data[GetIndex:,1]
+	ydata     = data[GetIndex:,2]
+	ydata_err = data[GetIndex:,4]
+	if ((numbmolecules == 2) and (gFact < 5.0)):
+		xdata     = data[GetIndex+2:,1]
+		ydata     = data[GetIndex+2:,2]
+		ydata_err = data[GetIndex+2:,4]
+	elif ((numbmolecules == 2) and (gFact >= 5.0) and (gFact < 7.0)):
+		xdata     = data[GetIndex+1:,1]
+		ydata     = data[GetIndex+1:,2]
+		ydata_err = data[GetIndex+1:,4]
+	elif ((numbmolecules == 2) and (gFact >= 7.0) and (gFact < 9.0)):
+		xdata     = data[GetIndex:,1]
+		ydata     = data[GetIndex:,2]
+		ydata_err = data[GetIndex:,4]
+	elif ((numbmolecules == 2) and (gFact >= 9.0) and (gFact < 13.0)):
+		xdata     = data[GetIndex-1:,1]
+		ydata     = data[GetIndex-1:,2]
+		ydata_err = data[GetIndex-1:,4]
+	elif ((numbmolecules == 2) and (gFact >= 13.0)):
+		xdata     = data[GetIndex-2:,1]
+		ydata     = data[GetIndex-2:,2]
+		ydata_err = data[GetIndex-2:,4]
+
+	if ((numbmolecules == 4) and (gFact < 2.2)):
+		xdata     = data[GetIndex+2:,1]
+		ydata     = data[GetIndex+2:,2]
+		ydata_err = data[GetIndex+2:,4]
+	elif ((numbmolecules == 4) and (gFact >= 2.2) and (gFact < 3.0)):
+		xdata     = data[GetIndex+1:,1]
+		ydata     = data[GetIndex+1:,2]
+		ydata_err = data[GetIndex+1:,4]
+	elif ((numbmolecules == 4) and (gFact >= 3.0) and (gFact < 3.5)):
+		xdata     = data[GetIndex:,1]
+		ydata     = data[GetIndex:,2]
+		ydata_err = data[GetIndex:,4]
+	elif ((numbmolecules == 4) and (gFact >= 3.5) and (gFact < 5.0)):
+		xdata     = data[GetIndex-1:,1]
+		ydata     = data[GetIndex-1:,2]
+		ydata_err = data[GetIndex-1:,4]
+
+	if ((numbmolecules == 8) and (gFact < 1.7)):
+		xdata     = data[GetIndex:,1]
+		ydata     = data[GetIndex:,2]
+		ydata_err = data[GetIndex:,4]
+	elif ((numbmolecules == 8) and (gFact >= 1.7) and (gFact < 3.0)):
+		xdata     = data[GetIndex:,1]
+		ydata     = data[GetIndex:,2]
+		ydata_err = data[GetIndex:,4]
+
+	if ((numbmolecules == 16) and (gFact < 1.1)):
+		xdata     = data[GetIndex+1:,1]
+		ydata     = data[GetIndex+1:,2]
+		ydata_err = data[GetIndex+1:,4]
+
+	if ((numbmolecules == 32) and (gFact < 1.0)):
+		xdata     = data[GetIndex+1:,1]
+		ydata     = data[GetIndex+1:,2]
+		ydata_err = data[GetIndex+1:,4]
+
+	popt, pcov = curve_fit(fitFuncEntropy1, xdata, ydata, sigma=ydata_err)
+	perr       = np.sqrt(np.diag(pcov))
+
+	t          = np.linspace(0, np.max(xdata), 10)
+	fit        = fitFuncEntropy1(t, *popt)
+	if (variableName == "tau"):
+		return t, fit, perr[0]
 	else:
-		xdata     = data[:,1]
-		ydata     = data[:,2]
-		ydata_err = data[:,4]
-
-	if (numbmolecules == 32):
-		if (gFact < 1.0):
-			xdata     = data[1:,1]
-			ydata     = data[1:,2]
-			ydata_err = data[1:,4]
-		else:
-			xdata     = data[:,1]
-			ydata     = data[:,2]
-			ydata_err = data[:,4]
-	
-	if (numbmolecules < 16):
-		popt, pcov = curve_fit(fitFuncEntropy, xdata, ydata, sigma=ydata_err)
-		perr       = np.sqrt(np.diag(pcov))
-
-		t          = np.linspace(0, np.max(xdata), 10)
-		fit        = fitFuncEntropy(t, *popt)
-		if (variableName == "tau"):
-			return t, fit, perr[0]
-		else:
-			return fit[0], perr[0]
-	else:
-		popt, pcov = curve_fit(fitFuncEntropy1, xdata, ydata, sigma=ydata_err)
-		perr       = np.sqrt(np.diag(pcov))
-
-		t          = np.linspace(0, np.max(xdata), 10)
-		fit        = fitFuncEntropy1(t, *popt)
-		if (variableName == "tau"):
-			return t, fit, perr[0]
-		else:
-			return fit[0], perr[0]
+		return fit[0], perr[0]
 
 def	GetFigureEntropyRT_vs_tau(TypeCal, molecule_rot, TransMove, RotMove, variableName, Rpt, gfact, parameterName, parameter, numbblocks, numbpass, molecule, ENT_TYPE, preskip1, postskip1, extra_file_name, src_dir, TypePlot, numbmolecules):
 	'''
@@ -1413,7 +1455,7 @@ def	GetFigureEntropyRT_vs_tau(TypeCal, molecule_rot, TransMove, RotMove, variabl
 	plt.axhline(y=S2DMRGPlot, color='green', lw = 2.0, linestyle='-.', label = 'DMRG')
 # DMRG finished here
 
-	tvar, purityFit,ErrorFit1 = GetFitPurity(FileToBePlotEntropy,numbmolecules, "tau")
+	tvar, purityFit,ErrorFit1 = GetFitPurity(FileToBePlotEntropy,numbmolecules, "tau", gfact)
 	ErrorFit = np.zeros(int(len(purityFit)))
 	ErrorFit[0] = ErrorFit1
 	print("Error  "+str(ErrorFit1))
@@ -1431,21 +1473,21 @@ def	GetFigureEntropyRT_vs_tau(TypeCal, molecule_rot, TransMove, RotMove, variabl
 	xminlim = {2:0.0, 4:0.0, 8:0.0, 16:0.0, 32:0.0}
 	ymaxlim = {2:0.165, 4:0.8, 8:0.8, 16:2.0, 32:2.0}
 	yminlim = {2:0.0, 4:0.0, 8:0.0, 16:0.0, 32:0.0}
-	xboxsize = {2:0.70, 4:0.70, 8:0.70, 16:0.7, 32:0.7}
-	yboxsize = {2:0.5, 4:0.5, 8:0.5, 16:0.3, 32:0.5}
 	TextLabel  = {2:r'$\mathrm{(a)}$', 4:r'$\mathrm{(b)}$', 8:r'$\mathrm{(c)}$', 16:r'$\mathrm{(a)}$', 32:r'$\mathrm{(e)}$'}
-	stepx = {2:0.004, 4:0.004, 8:0.004, 16:0.004, 32:0.004}
-	stepy = {2:0.02, 4:0.02, 8:0.02, 16:0.02, 32:0.1}
+	stepx = {2:0.002, 4:0.002, 8:0.004, 16:0.004, 32:0.004}
+	stepy = {2:0.01, 4:0.01, 8:0.02, 16:0.02, 32:0.1}
+	xboxsize = {2:0.0, 4:0.0, 8:0.70, 16:0.7, 32:0.7}
+	yboxsize = {2:0.6, 4:0.6, 8:0.5, 16:0.5, 32:0.5}
 	
 	plt.xticks(np.arange(xminlim[numbmolecules], xmaxlim[numbmolecules], step=stepx[numbmolecules]),fontsize=font, rotation=0)
 	plt.xlim(xminlim[numbmolecules], xmaxlim[numbmolecules])
 	plt.yticks(np.arange(yminlim[numbmolecules], ymaxlim[numbmolecules], step=stepy[numbmolecules]),fontsize=font, rotation=0)
 	plt.ylim(yminlim[numbmolecules], ymaxlim[numbmolecules])
 #
-	xmaxlim = {2:0.021, 4:0.021, 8:0.021, 16:0.021, 32:0.021}
-	xminlim = {2:-0.001, 4:-0.001, 8:-0.001, 16:-0.001, 32:-0.001}
-	ymaxlim = {2:0.165, 4:0.24, 8:0.4, 16:0.1, 32:0.5}
-	yminlim = {2:0.074, 4:0.11, 8:0.1, 16:0.0, 32:0.1}
+	xmaxlim = {2:0.00801, 4:0.0101, 8:0.021, 16:0.021, 32:0.021}
+	xminlim = {2:-0.0001, 4:-0.0001, 8:-0.001, 16:-0.001, 32:-0.001}
+	ymaxlim = {2:0.1, 4:0.16, 8:0.4, 16:0.1, 32:0.5}
+	yminlim = {2:0.07, 4:0.12, 8:0.1, 16:0.02, 32:0.1}
 	plt.xlim(xminlim[numbmolecules],xmaxlim[numbmolecules])
 	plt.ylim(yminlim[numbmolecules],ymaxlim[numbmolecules])
 	ymin, ymax = plt.ylim()
@@ -1453,7 +1495,7 @@ def	GetFigureEntropyRT_vs_tau(TypeCal, molecule_rot, TransMove, RotMove, variabl
 	plt.text((xmin+(xmax-xmin)*0.35), ymax-(ymax-ymin)*0.1, r'$N = \ $'+str(numbmolecules)+'; '+r'$g = \ $'+str(gfact), fontsize = font)
 	plt.text((xmin+(xmax-xmin)*0.01),ymax-(ymax-ymin)*0.08, TextLabel[numbmolecules], fontsize=font)
 	
-	plt.subplots_adjust(top=0.97, bottom=0.16, left=0.16, right=0.98, hspace=0.0, wspace=0.0)
+	plt.subplots_adjust(top=0.97, bottom=0.16, left=0.16, right=0.95, hspace=0.0, wspace=0.0)
 	plt.legend(bbox_to_anchor=(xboxsize[numbmolecules], yboxsize[numbmolecules]), loc=2, borderaxespad=1., shadow=True, fontsize = fontlegend)
 	plt.savefig(outfileEntropy, dpi = 200, format = 'eps')
 	plt.show()
@@ -1490,12 +1532,14 @@ def	GetFigureEntropyRT_vs_gFactor_COMBO(TypeCal, molecule_rot, TransMove, RotMov
 #
 	if (numbmolecules == 2):
 		#gFactorList  = [0.5+0.1*i for i in range(76)]  
-		gFactorList  = [0.6+0.2*i for i in range(36)]  
+		gFactorList  = [0.6+0.2*i for i in range(38)]  
+		gFactorList += [9.0+1.0*i for i in range(7)]  
+		#gFactorList += [9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0]  
 	if (numbmolecules == 4):
-		#gFactorList  = [0.5+0.1*i for i in range(26)]  
-		gFactorList  = [0.5+0.1*i for i in range(25)]  
+		gFactorList  = [0.5+0.1*i for i in range(31)]  
+		#gFactorList += [3.75+0.25*i for i in range(9)]  
 	if (numbmolecules == 8):
-		gFactorList  = [0.5+0.1*i for i in range(14)]  
+		gFactorList  = [0.5+0.1*i for i in range(16)]  
 	if (numbmolecules == 16):
 		gFactorList  = [0.5+0.1*i for i in range(11)]  
 	if (numbmolecules == 32):
@@ -1513,18 +1557,25 @@ def	GetFigureEntropyRT_vs_gFactor_COMBO(TypeCal, molecule_rot, TransMove, RotMov
 	for ENT_TYPE in ENT_TYPE_LIST:
 		iii = 0
 		for gfact in gFactorList:	
-			gfact = '{:03.1f}'.format(gfact)
+			gfact = '{:03.2f}'.format(gfact)
 			gfact = float(gfact)
 
 			if (ENT_TYPE == "BROKENPATH"):
 				preskipDict = {2:10000, 4:30000, 8: 0} 
+				if (gfact > 8.99):
+					preskipDict = {2:80000, 4:30000, 8: 0} 
 			else:
 				preskipDict = {2:10000, 4:10000, 8: 10000} 
+				if (gfact > 8.99):
+					preskipDict = {2:90000, 4:30000, 8: 0} 
 
 			if ((ENT_TYPE == "BROKENPATH") and (numbmolecules > 2)):
 				numbblocks = 50000
 			else:
 				numbblocks = 20000
+
+			if (gfact > 8.99):
+				numbblocks = 100000
 			preskip1 = preskipDict[numbmolecules]
 			#print(preskip1)
 			FilePlotName = support.GetFileNamePlot(TypeCal, molecule_rot, TransMove, RotMove, variableName, Rpt, gfact, dipolemoment, parameterName, parameter, numbblocks, numbpass, numbmolecules, molecule, ENT_TYPE, preskip1, postskip1, extra_file_name, src_dir, particleA, beadsRef)
@@ -1602,7 +1653,8 @@ def	GetFigureEntropyRT_vs_gFactor_COMBO(TypeCal, molecule_rot, TransMove, RotMov
 
 	gFactDMRG   = []
 	EntropyDMRG = []
-	cutDataDMRG = {2:4, 4:100, 8:160}
+	cutDataDMRG = {2:0, 4:77, 8:140}
+	#cutDataDMRG = {2:0, 4:0, 8:0}
 	for i in range(int(len(iRotors))):
 		if (iRotors[i] == numbmolecules):
 			gFactDMRG.append(1.0/(rFact[i]*rFact[i]*rFact[i]))
@@ -1610,7 +1662,7 @@ def	GetFigureEntropyRT_vs_gFactor_COMBO(TypeCal, molecule_rot, TransMove, RotMov
 		
 	plt.plot(gFactDMRG[cutDataDMRG[numbmolecules]:-110], EntropyDMRG[cutDataDMRG[numbmolecules]:-110], color = 'black', ls = '-', linewidth=2,  marker = 'None', markersize = 8, label = labelStringDMRG)
 # DMRG section ends here
-	xmaxlim = {2:8.01, 4:3.01, 8:2.01}
+	xmaxlim = {2:800.01, 4:800.01, 8:200.01}
 	xminlim = {2:0.0, 4:0.0, 8:0.0}
 	ymaxlim = {2:9, 4:8, 8:8.0}
 	yminlim = {2:0.0, 4:0.0, 8:0.0}
@@ -1619,15 +1671,15 @@ def	GetFigureEntropyRT_vs_gFactor_COMBO(TypeCal, molecule_rot, TransMove, RotMov
 		plt.xlabel(r'$g$', fontsize = font, labelpad=-3)
 		plt.ylabel(r'$S_{2}$', fontsize = font)
 		TextLabel  = {2:r'$\mathrm{(a)}$', 4:r'$\mathrm{(b)}$', 8:r'$\mathrm{(c)}$', 16:r'$\mathrm{(d)}$', 32:r'$\mathrm{(e)}$'}
-		stepx = {2:1.0, 4:0.5, 8:0.25}
-		stepy = {2:0.1, 4:0.1, 8:0.1}
-		plt.xticks(np.arange(xminlim[numbmolecules], xmaxlim[numbmolecules], step=stepx[numbmolecules]),fontsize=font, rotation=0)
-		plt.yticks(fontsize=font, rotation=0)
 		xboxsize = {2:0.45, 4:0.45, 8:0.45}
 		yboxsize = {2:0.28, 4:0.28, 8:0.28}
-		xmaxlim = {2:8.01, 4:3.01, 8:2.01}
-		xminlim = {2:0.0, 4:0.4, 8:0.4}
-		ymaxlim = {2:0.91, 4:0.801, 8:0.801}
+		stepx = {2:2.0, 4:0.5, 8:0.4}
+		stepy = {2:0.1, 4:0.1, 8:0.1}
+		plt.xticks(np.arange(xminlim[numbmolecules], xmaxlim[numbmolecules], step=stepx[numbmolecules]),fontsize=font, rotation=0)
+		plt.yticks(np.arange(yminlim[numbmolecules], ymaxlim[numbmolecules], step=stepy[numbmolecules]),fontsize=font, rotation=0)
+		xmaxlim = {2:8.1, 4:3.55, 8:2.01}
+		xminlim = {2:0.0, 4:0.0, 8:0.4}
+		ymaxlim = {2:0.901, 4:0.901, 8:0.901}
 		yminlim = {2:0.0, 4:0.0, 8:0.0}
 	elif (purpose == "ppt"):
 		plt.xlabel(r'$g$', fontsize = font, labelpad= -8)
@@ -1693,16 +1745,18 @@ def	GetFigureEntropyRT_vs_gFactor_COMPARE(TypeCal, ENT_TYPE, molecule_rot, Trans
 #
 	if (numbmolecules == 2):
 		#gFactorList  = [0.5+0.1*i for i in range(76)]  
-		gFactorList  = [0.6+0.2*i for i in range(36)]  
+		gFactorList  = [0.6+0.2*i for i in range(38)]  
+		gFactorList  += [9.0+1.0*i for i in range(20)]  
 	if (numbmolecules == 4):
 		#gFactorList  = [0.5+0.1*i for i in range(26)]  
-		gFactorList  = [0.5+0.1*i for i in range(25)]  
+		gFactorList  = [0.5+0.1*i for i in range(31)]  
 	if (numbmolecules == 8):
-		gFactorList  = [0.5+0.1*i for i in range(14)]  
+		gFactorList  = [0.5+0.1*i for i in range(16)]  
 	if (numbmolecules == 16):
 		gFactorList  = [0.5+0.1*i for i in range(10)]  
 	if (numbmolecules == 32):
 		gFactorList  = [0.5+0.1*i for i in range(9)]  
+	print(gFactorList)
 
 	entropy1Plot     = np.zeros((len(algorithm_LIST),len(gFactorList)))
 	purity1Plot      = np.zeros((len(algorithm_LIST),len(gFactorList)))
@@ -1769,7 +1823,7 @@ def	GetFigureEntropyRT_vs_gFactor_COMPARE(TypeCal, ENT_TYPE, molecule_rot, Trans
 
 	gFactDMRG   = []
 	EntropyDMRG = []
-	cutDataDMRG = {4:100, 8:160, 16:195}
+	cutDataDMRG = {4:77, 8:140, 16:195}
 	for i in range(int(len(iRotors))):
 		if (iRotors[i] == numbmolecules):
 			gFactDMRG.append(1.0/(rFact[i]*rFact[i]*rFact[i]))
@@ -1777,7 +1831,7 @@ def	GetFigureEntropyRT_vs_gFactor_COMPARE(TypeCal, ENT_TYPE, molecule_rot, Trans
 		
 	plt.plot(gFactDMRG[cutDataDMRG[numbmolecules]:-110], EntropyDMRG[cutDataDMRG[numbmolecules]:-110], color = 'black', ls = '-', linewidth=2,  marker = 'None', markersize = 8, label = labelStringDMRG)
 # DMRG section ends here
-	xmaxlim = {4:3.01, 8:2.01, 16:1.501}
+	xmaxlim = {4:4.01, 8:2.01, 16:1.501}
 	xminlim = {4:0.0, 8:0.0, 16:0.0}
 	ymaxlim = {4:2.0, 8:2.0, 16:2.0}
 	yminlim = {4:0.0, 8:0.0, 16:0.0}
@@ -1786,15 +1840,15 @@ def	GetFigureEntropyRT_vs_gFactor_COMPARE(TypeCal, ENT_TYPE, molecule_rot, Trans
 		plt.xlabel(r'$g$', fontsize = font, labelpad=-3)
 		plt.ylabel(r'$S_{2}$', fontsize = font)
 		TextLabel  = {4:r'$\mathrm{(a)}$', 8:r'$\mathrm{(b)}$', 16:r'$\mathrm{(c)}$'}
-		stepx = {4:0.5, 8:0.25, 16:0.25}
+		stepx = {4:0.5, 8:0.4, 16:0.25}
 		stepy = {4:0.1, 8:0.1, 16:.1}
 		plt.xticks(np.arange(xminlim[numbmolecules], xmaxlim[numbmolecules], step=stepx[numbmolecules]),fontsize=font, rotation=0)
-		plt.yticks(fontsize=font, rotation=0)
+		plt.yticks(np.arange(yminlim[numbmolecules], ymaxlim[numbmolecules], step=stepy[numbmolecules]),fontsize=font, rotation=0)
 		xboxsize = {4:0.60, 8:0.60, 16:0.60}
 		yboxsize = {4:0.28, 8:0.28, 16:0.28}
-		xmaxlim = {4:3.01, 8:2.0001, 16:1.5001}
-		xminlim = {4:0.4, 8:0.4, 16:0.4}
-		ymaxlim = {4:0.8, 8:0.82, 16:0.8}
+		xmaxlim = {4:3.55, 8:2.01, 16:1.5001}
+		xminlim = {4:0.0, 8:0.4, 16:0.4}
+		ymaxlim = {4:0.901, 8:0.901, 16:0.901}
 		yminlim = {4:0.0, 8:0.0, 16:0.0}
 	elif (purpose == "ppt"):
 		plt.xlabel(r'$g$', fontsize = font, labelpad=-8)
