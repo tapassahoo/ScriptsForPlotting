@@ -40,15 +40,6 @@ if (naxis != 0):
 fig = plt.figure()
 plt.grid(True)
 
-font=28
-purpose = "article"
-if (purpose == "article"):
-	font      = 28
-elif (purpose == "ppt"):
-	font      = 40
-	rc('axes', linewidth=2)
-fontlegend    = font/2.0
-
 #X and Y labels
 if (naxis != 0): 
 	plt.xlabel('bins of '+r'$\phi$')
