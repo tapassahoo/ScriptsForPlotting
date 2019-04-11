@@ -5,62 +5,70 @@ import sys
 import numpy as np
 from numpy import *
 import matplotlib
-#matplotlib.use('pdf')
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-from itertools import cycle
-import itertools
 from scipy.optimize import curve_fit
 from subprocess import call
 from matplotlib.backends.backend_pdf import PdfPages
-from matplotlib.ticker import ScalarFormatter
-import support_without_parallel as support
 import os
  
-import matplotlib.mlab as mlab
+#pyplot calling first
 fig = plt.figure()
 plt.grid(True)
 
+#Input specifications
 natom = int(sys.argv[1])
-nbeads = int(sys.argv[2])
-naxis = int(sys.argv[3])
+#nbeads = int(sys.argv[2])
+nbeads = 1
+naxis = int(sys.argv[2])
+DipoleMoment = float(sys.argv[3])
+NumBeads = int(sys.argv[4])
 
 ncol1 = nbeads + (natom-1)*3 # We have considered 0, M, N-1 beads
 ncol = naxis + ncol1*3 # We have considered costheta, phi, chi
 ncol = ncol+1
+print(str(ncol+1)+'th column')
+beadposition={0:'first-bead', 1:'middle-bead', 2:'last-bead'}
 
-num_bins = 20
-file1 = "/Users/tsahoo/linear-rotors-PIGS/PIGS-RotDOFs-Rpt10.05Angstrom-DipoleMoment8.0Debye-beta0.2Kinv-Blocks20000-Passes200-System2HF-e0vsbeads17/results/output_instant.dof"
-#file2 = "/Users/tsahoo/linear-rotors-PIGS/PIGS-RotDOFs-Rpt10.05Angstrom-DipoleMoment3.0Debye-beta0.2Kinv-Blocks20000-Passes200-System2HF-e0vsbeads17/results/output_instant.dof"
-#file3 = "/Users/tsahoo/linear-rotors-PIGS/PIGS-RotDOFs-Rpt10.05Angstrom-DipoleMoment3.0Debye-beta0.2Kinv-Blocks20000-Passes200-System2HF-e0vsbeads33/results/output_instant.dof"
+#Import the data files here
+file1 = "/work/tapas/linear-rotors-PIGS/PIGS-RotDOFs-Rpt10.05Angstrom-DipoleMoment"+str(DipoleMoment)+"Debye-beta0.2Kinv-Blocks20000-Passes200-System2HF-e0vsbeads"+str(NumBeads)+"/results/output_instant.dof"
+
+#Data processiong by Numpy 
 x1 = loadtxt(file1, unpack=True, usecols=[ncol])
-#x2 = loadtxt(file2, unpack=True, usecols=[ncol])
-#x3 = loadtxt(file3, unpack=True, usecols=[ncol])
-#x = np.fmod(x,2.0*pi)
-#y = np.fabs(np.fmod(y,2.0*pi))
 
-# Normalize
-kwargs = dict(alpha=0.5, bins='auto', density=True, stacked=True)
+if (naxis != 0): 
+	x1 = np.fabs(np.fmod(x1,2.0*pi))
 
-# Plot
-plt.hist(x1, **kwargs, color='g', label='P=5')
-#plt.hist(x2, **kwargs, color='b', label='P=17')
-#plt.hist(x3, **kwargs, color='y', label='P=33')
-#plt.hist(x4, **kwargs, color='r', label='P=32')
-#plt.hist(x5, **kwargs, color='g', label='P=64')
-plt.gca().set(title='Probability Histogram of Diamond Depths', ylabel='Probability')
-#plt.xlim(50,75)
-plt.legend();
+# Normalize density
+num_bins = 20
+kwargs = dict(alpha=0.5, bins='auto', normed=True, stacked=True)
 
-#plt.hist(x, bins='auto', density=True, facecolor='blue', alpha=0.7, label = "PIGS-ENT")
-#plt.hist(y, bins='auto', normed=1, facecolor='green', alpha=0.7, label = "PIMC")
-plt.xlabel('bins')
-plt.ylabel('Probability Distribution')
+# Lebels for plotting
+label1 = str(DipoleMoment)+' Debye'
+label1 += ';  P = '+str(NumBeads)
+print(label1)
+
+#Histogram plot
+plt.hist(x1, **kwargs, color='b', label='""')
+
+#X and Y labels
+if (naxis != 0): 
+	plt.xlabel('bins of '+r'$\phi$')
+	fname='Phi'
+else:
+	plt.xlabel('bins of '+r'$\cos(\theta)$')
+	fname='CosTheta'
+
+plt.ylabel('Density')
 
 # Tweak spacing to prevent clipping of ylabel
+plt.gca().set(title=r'$\mu = $'+label1)
+#plt.xlim(50,75)
+plt.legend();
 plt.subplots_adjust(left=0.15)
-plt.legend(bbox_to_anchor=(0.35, 0.20), loc=2, borderaxespad=1., shadow=True )
+plt.legend(bbox_to_anchor=(0.25, 2.20), loc=2, borderaxespad=1., shadow=True )
 
-outfile = "hist-test.eps"
-plt.savefig(outfile, dpi = 200, format = 'eps')
-plt.show()
-#call(["open", outfile])
+#Saving the plot in a file
+outfile = "/home/tapas/ResultsOfPIGS/PIGS-RotDOFs-Rpt10.05Angstrom-DipoleMoment"+str(DipoleMoment)+"Debye-beta0.2Kinv-Blocks20000-Passes200-System2HF-e0vsbeads"+str(NumBeads)+"-histgramOf"+fname+"-for-"+str(natom)+"th-rotor-and-"+beadposition[nbeads]+".eps"
+print(outfile)
+plt.savefig(outfile, dpi = 100, format = 'eps')
