@@ -1,0 +1,17 @@
+{
+  "python.pythonPath": "/Users/tsahoo/.virtualenvs/venv2/bin/python",
+  "python.formatting.provider": "autopep8",
+  "python.linting.enabled": true,
+  "remote.SSH.enableAgentForwarding": true,
+  "remote.SSH.enableDynamicForwarding": true,
+  "sshfs.configs": [
+    {
+      "root": "/home/pcsa",
+      "host": "202.54.54.238",
+      "port": 22,
+      "username": "pcsa",
+      "password": "Satrajit@1965",
+      "name": "vscode"
+    }
+  ]
+}

@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 import numpy as np
 from numpy import *
 import numpy as np
@@ -9,7 +8,7 @@ from scipy.optimize import curve_fit
 from subprocess import call
 #from matplotlib.backends.backend_pdf import PdfPages
 from matplotlib.ticker import ScalarFormatter
-import support_without_parallel as support
+import mypkg.pkgMoribs.support_without_parallel as support
 import os
 from pylab import *
 import matplotlib.axes
@@ -87,7 +86,6 @@ def	FigureENT(TypeCal, molecule_rot, TransMove, RotMove, variableName, Rpt, dipo
 				numbblocks = 10000
 				preskip1   = 6000
 				postskip1  = 0
-		
 			RFactorPlot      = np.zeros(len(DList))
 			entropy1Plot     = np.zeros(len(DList))
 			purity1Plot      = np.zeros(len(DList))
@@ -95,7 +93,6 @@ def	FigureENT(TypeCal, molecule_rot, TransMove, RotMove, variableName, Rpt, dipo
 			err_purity1Plot  = np.zeros(len(DList))
 			entropy2Plot     = np.zeros(len(DList))
 			entropy3Plot     = np.zeros(len(DList))
-
 			iii = 0
 			for dipolemoment in DList:
 				RFactorList = support.GetrAndgFactor(molecule_rot, Rpt, dipolemoment)
@@ -108,11 +105,11 @@ def	FigureENT(TypeCal, molecule_rot, TransMove, RotMove, variableName, Rpt, dipo
 						numbblocks = 20000
 				FilePlotName = support.GetFileNamePlot(TypeCal, molecule_rot, TransMove, RotMove, variableName, Rpt, -1.0, dipolemoment, parameterName, parameter, numbblocks, numbpass, numbmolecules, molecule, ENT_TYPE, preskip1, postskip1, extra_file_name, src_dir, particleA, beadsRef)
 				FileToBePlotEntropy = FilePlotName.SaveEntropy+".txt"
-				#FileToBePlotDIAG    = FilePlotName.SaveEntropyDIAG+".txt"
+				#FileToBePlotED    = FilePlotName.SaveEntropyED+".txt"
 
 				beads1, var1, purity1, entropy1, err_purity1, err_entropy1 = genfromtxt(FileToBePlotEntropy,unpack=True, usecols=[0, 1, 4, 5, 8, 9], skip_header=preskip, skip_footer=postskip)
 				if (numbmolecules <= 6):
-					RFactor, energy3, entropy3                             = loadtxt(FileToBePlotDIAG,unpack=True, usecols=[0,1,2])
+					RFactor, energy3, entropy3                             = loadtxt(FileToBePlotED,unpack=True, usecols=[0,1,2])
 					
 				if (TypePlot == "GFACTOR"):
 					RFactorPlot[iii] = 1.0/(RFactor*RFactor*RFactor)
@@ -234,10 +231,10 @@ def	FigureENT(TypeCal, molecule_rot, TransMove, RotMove, variableName, Rpt, dipo
 			FilePlotName      = support.GetFileNamePlot(TypeCal, molecule_rot, TransMove, RotMove, variableName, Rpt, dipolemoment, parameterName, parameter, numbblocks, numbpass, numbmolecules, molecule, ENT_TYPE, preskip1, postskip1, extra_file_name, src_dir, particleA, beadsRef)
 			FileToBePlot   	  = FilePlotName.SaveEntropy+".txt"
 			FileToBePlotMM    = FilePlotName.SaveEntropyMM+".txt"
-			FileToBePlotDIAG  = FilePlotName.SaveEntropyDIAG+".txt"
+			FileToBePlotED  = FilePlotName.SaveEntropyED+".txt"
 			print(FileToBePlot)
 			print(FileToBePlotMM)
-			print(FileToBePlotDIAG)
+			print(FileToBePlotED)
 ##
 			FilePlot     = FilePlotName.SaveEntropy+".eps"
 			outfile      = FilePlot
@@ -258,7 +255,7 @@ def	FigureENT(TypeCal, molecule_rot, TransMove, RotMove, variableName, Rpt, dipo
 					var2 = parameter*(beads-1.0)
 	
 			if (numbmolecules <= 6):
-				RFactor, entropy3                              = loadtxt(FileToBePlotDIAG,unpack=True, usecols=[0, 2])
+				RFactor, entropy3                              = loadtxt(FileToBePlotED,unpack=True, usecols=[0, 2])
 ###================data reading end====================###
 			print(entropy1)
 			print(entropy2)
@@ -334,9 +331,9 @@ def	FigureENTCOMBINE(TypeCal, molecule_rot, TransMove, RotMove, variableName, Rp
 				FileToBePlotEntropy = FilePlotName.SaveEntropy+".txt"
 			
 				if (ENT_TYPE == "SWAPTOUNSWAP"):
-					FileToBePlotDIAG    = FilePlotName.SaveEntropyDIAG+".txt"
+					FileToBePlotED    = FilePlotName.SaveEntropyED+".txt"
 					beads1, var1, purity1, entropy1, err_purity1, err_entropy1 = genfromtxt(FileToBePlotEntropy,unpack=True, usecols=[0, 1, 4, 5, 8, 9], skip_header=preskip, skip_footer=postskip)
-					entropyDIAG                                                = loadtxt(FileToBePlotDIAG,unpack=True, usecols=[2])
+					entropyED                                                = loadtxt(FileToBePlotED,unpack=True, usecols=[2])
 				if (ENT_TYPE == "BROKENPATH"):
 					beads1, var1, entropy1, err_entropy1                       = genfromtxt(FileToBePlotEntropy,unpack=True, usecols=[0, 1, 4, 7], skip_header=preskip, skip_footer=postskip)
 				RFactorPlot[iii] = RFactorList[1]
@@ -347,7 +344,7 @@ def	FigureENTCOMBINE(TypeCal, molecule_rot, TransMove, RotMove, variableName, Rp
 					beads = indexi
 					if beads == beadsRef1:
 						entropy1Plot[iii]     = entropy1[ii]
-						entropy2Plot[iii]     = entropyDIAG
+						entropy2Plot[iii]     = entropyED
 						err_entropy1Plot[iii] = err_entropy1[ii]
 					ii += 1
 				iii += 1
@@ -622,15 +619,15 @@ def	FigureEnergyPIGS(TypeCal, molecule_rot, TransMove, RotMove, variableName, Rp
 	call(["rm", FilePlotEnergy])
 
 	FileToBePlotEnergy  = FilePlotName.SaveEnergy+".txt"
-	FileToBePlotDIAG    = FilePlotName.SaveEnergyDIAG+".txt"
+	FileToBePlotED    = FilePlotName.SaveEnergyED+".txt"
 	print(FileToBePlotEnergy)
-	print(FileToBePlotDIAG)
+	print(FileToBePlotED)
 
-	if (os.path.exists(FileToBePlotDIAG)):
+	if (os.path.exists(FileToBePlotED)):
 		FileToBePlotMM  = FilePlotName.SaveEnergyMM+".txt"
 		beads2, energy2 = genfromtxt(FileToBePlotMM,unpack=True, usecols=[0,1], skip_header=0, skip_footer=0)
 		print(energy2)
-		energy3         = loadtxt(FileToBePlotDIAG,unpack=True, usecols=[1])
+		energy3         = loadtxt(FileToBePlotED,unpack=True, usecols=[1])
 		BConstant       = support.GetBconst(molecule_rot)  # in wavenumber
 		Units           = support.GetUnitConverter()
 		BConstantK      = BConstant*Units.CMRECIP2KL
@@ -654,8 +651,9 @@ def	FigureEnergyPIGS(TypeCal, molecule_rot, TransMove, RotMove, variableName, Rp
 	font         = 28
 	fontlegend   = font/2.0
 
-	valTau, valRotEnergy, valPotEnergy, valTotalEnergy, errorRotEnergy, errorPotEnergy, errorTotalEnergy = genfromtxt(FileToBePlotEnergy, unpack=True, usecols=[1, 3, 4, 5, 7, 8, 9])
+	valTau, valRotEnergy, valPotEnergy, valTotalEnergy, errorRotEnergy, errorPotEnergy, errorTotalEnergy = genfromtxt(FileToBePlotEnergy, unpack=True, usecols=[1, 3, 4, 5, 7, 8, 9], skip_header=5, skip_footer=1)
 
+	print(valTotalEnergy)
 	plt.subplot(1, 2, 1)
 	YLabel = "Total"
 	PlotEnergyPIGS(plotExtra, font, valTau,valTotalEnergy,errorTotalEnergy,variableName,YLabel,var2,energy2,energy3)
@@ -1534,7 +1532,7 @@ def	GetFigureEntropyRT_vs_gFactor_COMBO(TypeCal, molecule_rot, TransMove, RotMov
 		#gFactorList  = [0.5+0.1*i for i in range(76)]  
 		gFactorList  = [0.6+0.2*i for i in range(38)]  
 		gFactorList += [9.0+1.0*i for i in range(7)]  
-		#gFactorList += [9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0]  
+		gFactorList += [16, 17, 18, 19, 20]  
 	if (numbmolecules == 4):
 		gFactorList  = [0.5+0.1*i for i in range(31)]  
 		#gFactorList += [3.75+0.25*i for i in range(9)]  
@@ -1563,7 +1561,7 @@ def	GetFigureEntropyRT_vs_gFactor_COMBO(TypeCal, molecule_rot, TransMove, RotMov
 			if (ENT_TYPE == "BROKENPATH"):
 				preskipDict = {2:10000, 4:30000, 8: 0} 
 				if (gfact > 8.99):
-					preskipDict = {2:80000, 4:30000, 8: 0} 
+					preskipDict = {2:90000, 4:30000, 8: 0} 
 			else:
 				preskipDict = {2:10000, 4:10000, 8: 10000} 
 				if (gfact > 8.99):
@@ -1674,12 +1672,12 @@ def	GetFigureEntropyRT_vs_gFactor_COMBO(TypeCal, molecule_rot, TransMove, RotMov
 		xboxsize = {2:0.45, 4:0.45, 8:0.45}
 		yboxsize = {2:0.28, 4:0.28, 8:0.28}
 		stepx = {2:2.0, 4:0.5, 8:0.4}
-		stepy = {2:0.1, 4:0.1, 8:0.1}
+		stepy = {2:0.2, 4:0.1, 8:0.1}
 		plt.xticks(np.arange(xminlim[numbmolecules], xmaxlim[numbmolecules], step=stepx[numbmolecules]),fontsize=font, rotation=0)
 		plt.yticks(np.arange(yminlim[numbmolecules], ymaxlim[numbmolecules], step=stepy[numbmolecules]),fontsize=font, rotation=0)
-		xmaxlim = {2:8.1, 4:3.55, 8:2.01}
+		xmaxlim = {2:20.5, 4:3.55, 8:2.01}
 		xminlim = {2:0.0, 4:0.0, 8:0.4}
-		ymaxlim = {2:0.901, 4:0.901, 8:0.901}
+		ymaxlim = {2:1.401, 4:0.901, 8:0.901}
 		yminlim = {2:0.0, 4:0.0, 8:0.0}
 	elif (purpose == "ppt"):
 		plt.xlabel(r'$g$', fontsize = font, labelpad= -8)
@@ -1710,7 +1708,7 @@ def	GetFigureEntropyRT_vs_gFactor_COMBO(TypeCal, molecule_rot, TransMove, RotMov
 	elif (purpose == "ppt"):
 		plt.subplots_adjust(top=0.97, bottom=0.18, left=0.18, right=0.96, hspace=0.0, wspace=0.0)
 		plt.legend(bbox_to_anchor=(xboxsize[numbmolecules], yboxsize[numbmolecules]), loc=2, borderaxespad=1., shadow=True, fontsize = fontlegend)
-	plt.savefig(outfileEntropy, dpi = 200, format = 'eps')
+	plt.savefig(outfileEntropy, dpi=200, format = 'eps')
 	plt.show()
 
 def	GetFigureEntropyRT_vs_gFactor_COMPARE(TypeCal, ENT_TYPE, molecule_rot, TransMove, RotMove, variableName, Rpt, parameterName, parameter, numbblocks, numbpass, molecule, algorithm_LIST, preskip1, postskip1, extra_file_name, src_dir, TypePlot, beadsRef, numbmolecules,purpose):
