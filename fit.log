@@ -1,0 +1,204 @@
+
+
+*******************************************************************************
+Thu Dec 12 10:20:05 2019
+
+
+FIT:    data read from '/Users/tsahoo/ResultsOfPIGS/PIGS-RotDOFs-Rpt3.1Angstrom-Energy-vs-tau-fixed-beta0.05Kinv-Blocks20000-Passes100-System11-p-H2O-preskip0-postskip0.txt' u 2:6:10
+        format = x:z:s
+        #datapoints = 13
+function used for fitting: f(x)
+	f(x)=a+b*x*x
+BREAK: Need via and either parameter list or file
+
+*******************************************************************************
+Thu Dec 12 10:20:12 2019
+
+
+FIT:    data read from '/Users/tsahoo/ResultsOfPIGS/PIGS-RotDOFs-Rpt3.1Angstrom-Energy-vs-tau-fixed-beta0.05Kinv-Blocks20000-Passes100-System11-p-H2O-preskip0-postskip0.txt' u 2:6
+        format = x:z
+        #datapoints = 13
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x)=a+b*x*x
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b            
+   0 5.7902802062e+07   0.00e+00  1.41e+04   -2.000000e+04   1.000000e+00
+   3 5.2696527417e+06  -2.03e-04  1.41e+01   -2.201214e+04   9.999973e-01
+
+After 3 iterations the fit converged.
+final sum of squares of residuals : 5.26965e+06
+rel. change during last iteration : -2.02526e-09
+
+degrees of freedom    (FIT_NDF)                        : 11
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 692.141
+variance of residuals (reduced chisquare) = WSSR/ndf   : 479059
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = -22012.1         +/- 208.7        (0.9483%)
+b               = 0.999997         +/- 2.901e+07    (2.901e+09%)
+
+correlation matrix of the fit parameters:
+                a      b      
+a               1.000 
+b              -0.393  1.000 
+
+
+*******************************************************************************
+Thu Dec 12 10:27:12 2019
+
+
+FIT:    data read from '/Users/tsahoo/ResultsOfPIGS/PIGS-RotDOFs-Rpt3.1Angstrom-Energy-vs-tau-fixed-beta0.05Kinv-Blocks20000-Passes100-System11-p-H2O-preskip0-postskip0.txt' u 2:6
+        format = x:z
+        #datapoints = 13
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x)=a+b*x*x+c*x*x*x*x
+fitted parameters initialized with current variable values
+
+
+
+*******************************************************************************
+Thu Dec 12 10:27:15 2019
+
+
+FIT:    data read from '/Users/tsahoo/ResultsOfPIGS/PIGS-RotDOFs-Rpt3.1Angstrom-Energy-vs-tau-fixed-beta0.05Kinv-Blocks20000-Passes100-System11-p-H2O-preskip0-postskip0.txt' u 2:6
+        format = x:z
+        #datapoints = 13
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x)=a+b*x*x+c*x*x*x*x
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 6.3047874673e+09   0.00e+00  5.77e-01    1.000000e+00   1.000000e+00   1.000000e+00
+BREAK: Singular matrix in Invert_RtR
+
+*******************************************************************************
+Thu Dec 12 10:27:23 2019
+
+
+FIT:    data read from '/Users/tsahoo/ResultsOfPIGS/PIGS-RotDOFs-Rpt3.1Angstrom-Energy-vs-tau-fixed-beta0.05Kinv-Blocks20000-Passes100-System11-p-H2O-preskip0-postskip0.txt' u 2:6
+        format = x:z
+        #datapoints = 13
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x)=a+b*x*x+c*x*x*x*x
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 1.9310980714e+05   0.00e+00  1.26e+04   -2.174526e+04  -9.444337e+07   1.000995e+00
+BREAK: Singular matrix in Invert_RtR
+
+*******************************************************************************
+Thu Dec 12 10:27:38 2019
+
+
+FIT:    data read from '/Users/tsahoo/ResultsOfPIGS/PIGS-RotDOFs-Rpt3.1Angstrom-Energy-vs-tau-fixed-beta0.05Kinv-Blocks20000-Passes100-System11-p-H2O-preskip0-postskip0.txt' u 2:6
+        format = x:z
+        #datapoints = 13
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x)=a+b*x*x+c*x*x*x*x
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b            
+   0 1.9310980714e+05   0.00e+00  1.54e+04   -2.174526e+04  -9.444337e+07
+   1 1.9310980714e+05   0.00e+00  1.54e+06   -2.174526e+04  -9.444337e+07
+
+After 1 iterations the fit converged.
+final sum of squares of residuals : 193110
+rel. change during last iteration : 0
+
+degrees of freedom    (FIT_NDF)                        : 11
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 132.497
+variance of residuals (reduced chisquare) = WSSR/ndf   : 17555.4
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = -21745.3         +/- 39.96        (0.1838%)
+b               = -9.44434e+07     +/- 5.554e+06    (5.881%)
+
+correlation matrix of the fit parameters:
+                a      b      
+a               1.000 
+b              -0.393  1.000 
+
+
+*******************************************************************************
+Thu Dec 12 10:56:58 2019
+
+
+FIT:    data read from '/Users/tsahoo/ResultsOfPIGS/PIGS-RotDOFs-Rpt3.5Angstrom-Energy-vs-tau-fixed-beta0.05Kinv-Blocks20000-Passes100-System11-p-H2O-preskip0-postskip0.txt' u 2:6
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x)=a+b*x*x+c*x*x*x*x
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b            
+   0 4.5985611531e+08   0.00e+00  1.54e+04   -2.174526e+04  -9.444337e+07
+   5 3.6127653221e+04  -1.42e-08  1.54e-01   -1.542026e+04  -5.412548e+07
+
+After 5 iterations the fit converged.
+final sum of squares of residuals : 36127.7
+rel. change during last iteration : -1.41783e-13
+
+degrees of freedom    (FIT_NDF)                        : 9
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 63.3576
+variance of residuals (reduced chisquare) = WSSR/ndf   : 4014.18
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = -15420.3         +/- 21.11        (0.1369%)
+b               = -5.41255e+07     +/- 2.699e+06    (4.986%)
+
+correlation matrix of the fit parameters:
+                a      b      
+a               1.000 
+b              -0.425  1.000 
+
+
+*******************************************************************************
+Thu Dec 12 10:57:14 2019
+
+
+FIT:    data read from '/Users/tsahoo/ResultsOfPIGS/PIGS-RotDOFs-Rpt3.5Angstrom-Energy-vs-tau-fixed-beta0.05Kinv-Blocks20000-Passes100-System11-p-H2O-preskip0-postskip0.txt' u 2:6
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x)=a+b*x*x+c*x*x*x*x
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b            
+   0 3.6127653221e+04   0.00e+00  1.09e+04   -1.542026e+04  -5.412548e+07
+   1 3.6127653221e+04   0.00e+00  1.09e+04   -1.542026e+04  -5.412548e+07
+
+After 1 iterations the fit converged.
+final sum of squares of residuals : 36127.7
+rel. change during last iteration : 0
+
+degrees of freedom    (FIT_NDF)                        : 9
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 63.3576
+variance of residuals (reduced chisquare) = WSSR/ndf   : 4014.18
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = -15420.3         +/- 21.11        (0.1369%)
+b               = -5.41255e+07     +/- 2.699e+06    (4.986%)
+
+correlation matrix of the fit parameters:
+                a      b      
+a               1.000 
+b              -0.425  1.000 

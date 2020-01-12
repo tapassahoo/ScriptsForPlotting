@@ -6,6 +6,8 @@
 #cp /home/tapas/ResultsOfENT/ENT-RotDOFs-Rpt10.05Angstrom-Entropy-vs-gFactor-of-HF-fixed-beta0.2Kinv-numbbeads61-Blocks50000-Passes200-preskip1000-postskip0-SWAPTOUNSWAP1.eps /home/tapas/manuscript/dipole_pimc/Fig_S2_rotors.eps
 #cp /home/tapas/ResultsOfPIGS/PIGS-RotDOFs-Rpt10.05Angstrom-correlation-vs-gFactor-of-HF-fixed-beta0.2Kinv-numbbeads41-Blocks10000-Passes50-preskip5000-postskip0.eps /home/tapas/manuscript/dipole_pimc/Fig_order_parameter_rotors.eps
 #
+#/Users/tsahoo/ResultsOfENT/ENT-RotDOFs-Rpt10.05Angstrom-Entropy-vs-gFactor-of-HF-fixed-beta0.2Kinv-Blocks20000-Passes100-preskip10000-postskip0-SWAPTOUNSWAP-Fit-a-article.pdf
+#/Users/tsahoo/ResultsOfENT/ENT-RotDOFs-Rpt10.05Angstrom-Entropy-vs-gFactor-of-HF-fixed-beta0.2Kinv-Blocks20000-Passes100-preskip10000-postskip0-SWAPTOUNSWAP-Fit-b-article.pdf
 #Final Figures obtained from with ratio trick
 ## S2 vs tau
 cp /Users/tsahoo/ResultsOfENT/ENT-RotDOFs-Rpt10.05Angstrom-gFactor1.0-Entropy-vs-tau-fixed-beta0.2Kinv-Blocks20000-Passes100-System2HF-preskip10000-postskip0-SWAPTOUNSWAP-a.eps /Users/tsahoo/Documents/MyArticles/dipole_pimc/Fig_a_S2_vs_tau.eps

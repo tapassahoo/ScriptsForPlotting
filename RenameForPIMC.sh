@@ -1,0 +1,3 @@
+cp /Users/tsahoo/ResultsOfPIMC/PIMC-TIP4P-2005-RotDOFs-Rpt2.8Angstrom-Energy-vs-beta-fixed-tau0.001Kinv-Blocks20000-Passes100-System11H2O-preskip0-postskip0-tot.pdf /Users/tsahoo/Documents/MyArticles/article-pimc/Fig-11h2o-tot-energy.pdf
+cp /Users/tsahoo/ResultsOfPIMC/PIMC-TIP4P-2005-RotDOFs-Rpt2.8Angstrom-Energy-vs-beta-fixed-tau0.001Kinv-Blocks20000-Passes100-System11H2O-preskip0-postskip0-pot.pdf /Users/tsahoo/Documents/MyArticles/article-pimc/Fig-11h2o-pot-energy.pdf
+cp /Users/tsahoo/ResultsOfPIMC/PIMC-TIP4P-2005-RotDOFs-Rpt2.8Angstrom-Energy-vs-beta-fixed-tau0.001Kinv-Blocks20000-Passes100-System11H2O-preskip0-postskip0-rot.pdf /Users/tsahoo/Documents/MyArticles/article-pimc/Fig-11h2o-rot-energy.pdf
