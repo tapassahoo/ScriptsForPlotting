@@ -1,5 +1,3 @@
-#!/usr/bin/python
-
 import time
 from subprocess import call
 from os import system
@@ -89,8 +87,7 @@ BConstantK = BConstant*Units.CMRECIP2KL
 user_name = "tapas"
 final_results_path = "/home/"+user_name+"/ResultsOf"+TypeCal+"/"
 #
-FilePlotName = support.GetFileNamePlot(TypeCal, molecule_rot, False, True, variableName, Rpt, gfact, dipolemoment, parameterName,
-                                       parameter, numbblocks, numbpass, numbmolecules, molecule, ENT_TYPE, 0, 0, extra_file_name, final_results_path, particleA, 10)
+FilePlotName = support.GetFileNamePlot(TypeCal, molecule_rot, False, True, variableName, Rpt, gfact, dipolemoment, parameterName, parameter, numbblocks, numbpass, numbmolecules, molecule, ENT_TYPE, 0, 0, extra_file_name, final_results_path, particleA, 10)
 #
 if(args.DipoleMoment > 0.0):
     RFactorList = support.GetrAndgFactor(molecule_rot, Rpt, dipolemoment)
@@ -98,8 +95,7 @@ if(args.DipoleMoment > 0.0):
 if(args.gFactor > 0.0):
     RFactor = 1.0/math.pow(gfact, 1.0/3.0)
 
-support.GetEDResults(TypeCal, FilePlotName, srcCodePath,
-                     RFactor, numbmolecules, particleA, lmax, ltotalmax)
+support.GetEDResults(TypeCal, FilePlotName, srcCodePath, RFactor, numbmolecules, particleA, lmax, ltotalmax)
 
 #loop = inputFile.Getbeads(TypeCal, variableName)
 #support.GetExactValues(FilePlotName, srcCodePath, RFactor, numbmolecules, loop, particleA, molecule_rot, Rpt, dipolemoment, parameter, BConstantK, variableName, TypeCal)
