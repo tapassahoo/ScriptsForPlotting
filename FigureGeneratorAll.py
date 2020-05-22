@@ -15,11 +15,12 @@ RotMove = True
 TypeCal = 'PIGS'
 variableName = "tau"
 #variableName = "beta"
+variableName1="distance"
 
-TypePlot = "Energy"
+#TypePlot = "Energy"
 #TypePlot = "ExactEnergy"
 #TypePlot = "Entropy"
-#TypePlot = "OrderParam-vs-R"
+TypePlot = "OrderParam"
 #TypePlot = "Energy"
 # TypePlot="ChemPot"
 # TypePlot="CorrFunc"
@@ -34,7 +35,7 @@ final_results_path = os.path.expanduser("~") + "/ResultsOf" + TypeCal + "/"
 if (((RotMove == True) and (TransMove == False) and (TypePlot == "Energy")) and ((variableName == "tau") or (variableName == "beta"))):
 	beta = 0.1
 	tau = 0.002
-	numbmolecules = 2
+	numbmolecules = 11
 	numbblocks = 20000
 	numbpass = 200
 	preskipList= [0]
@@ -46,13 +47,19 @@ if (((RotMove == True) and (TransMove == False) and (TypePlot == "Energy")) and 
 	dipolemoment = -1.0
 	gfact = -1.0
 
-	rmin = 4.0
+	rmin = 2.7
 	rmax = 5.0
 	dr = 0.1
 	nr = int(((rmax-rmin)+dr*0.5)/dr)
-	nr = nr+1
-	print(nr)
+	nr += 1
 	RList = [rmin+dr*i for i in range(nr)]
+	rmin = 5.2
+	rmax = 10.0
+	dr = 0.2
+	nr = int(((rmax-rmin)+dr*0.5)/dr)
+	nr += 1
+	print(nr)
+	RList += [rmin+dr*i for i in range(nr)]
 	print(RList)
 	
 	for preskip in preskipList:
@@ -62,10 +69,52 @@ if (((RotMove == True) and (TransMove == False) and (TypePlot == "Energy")) and 
 				parameterName = "tau"
 				parameter = tau
 				FigureGenerator.GetFigureEnergyRot_vs_beta(TypeCal, molecule_rot, TransMove, RotMove, variableName, float(Rpt1), gfact, dipolemoment, parameterName, parameter, numbblocks, numbpass, numbmolecules, molecule, preskip, postskip, extra_file_name, final_results_path, TypePlot, purpose)
-			if (variableName == "tau"):
+			if ((variableName == "tau") and (variableName1 != "distance")):
 				parameterName = "beta"
 				parameter = beta
 				FigureGenerator.GetFigureEnergyRot_vs_tau(TypeCal, molecule_rot, TransMove, RotMove, variableName, float(Rpt), gfact, dipolemoment, parameterName, parameter, numbblocks, numbpass, numbmolecules, molecule, preskip, postskip, extra_file_name, final_results_path, TypePlot, purpose)
+		if ((variableName == "tau") and (variableName1 == "distance")):
+			parameterName = "beta"
+			parameter = beta
+			FigureGenerator.GetFigureEnergyRot_vs_R(TypeCal, molecule_rot, TransMove, RotMove, variableName, RList, gfact, dipolemoment, parameterName, parameter, numbblocks, numbpass, numbmolecules, molecule, preskip, postskip, extra_file_name, final_results_path, TypePlot, purpose)
+
+if (((RotMove == True) and (TransMove == False) and (TypePlot == "OrderParam")) and ((variableName == "tau") or (variableName == "beta"))):
+	beta = 0.1
+	tau = 0.002
+	numbmolecules = 11
+	numbblocks = 20000
+	numbpass = 200
+	preskipList= [0]
+	postskip = 0
+	#extra_file_name = ""
+	extra_file_name = "qTIP4P-"
+
+	# compulsory parameters
+	dipolemoment = -1.0
+	gfact = -1.0
+
+	rmin = 2.7
+	rmax = 5.0
+	dr = 0.1
+	nr = int(((rmax-rmin)+dr*0.5)/dr)
+	nr += 1
+	RList = [rmin+dr*i for i in range(nr)]
+	rmin = 5.2
+	rmax = 8.0
+	dr = 0.2
+	nr = int(((rmax-rmin)+dr*0.5)/dr)
+	nr += 1
+	print(nr)
+	RList += [rmin+dr*i for i in range(nr)]
+	print(RList)
+	
+	for preskip in preskipList:
+		if ((variableName == "tau") and (variableName1 == "distance")):
+			print("TApa")
+			parameterName = "beta"
+			parameter = beta
+
+			FigureGenerator.GetFigureOrderParam_vs_R(TypeCal, molecule_rot, TransMove, RotMove, variableName, RList, gfact, dipolemoment, parameterName, parameter, numbblocks, numbpass, numbmolecules, molecule, preskip, postskip, extra_file_name, final_results_path, TypePlot, purpose)
 
 
 ''''
@@ -125,33 +174,6 @@ if ((TransMove == True)  and (RotMove == True) and (TypePlot == "Energy")):
 			parameterName = "beta"
 			parameter = beta
 			FigureGenerator.GetFigureEnergyTransRot_vs_tau(TypeCal, molecule_rot, TransMove, RotMove, variableName, RList, gfact, dipolemoment, parameterName, parameter, numbblocks, numbpass, numbmolecules, molecule, preskip, postskip, extra_file_name, final_results_path, TypePlot, purpose)
-
-if (TypePlot == "OrderParam-vs-R"):
-	parameterName = "beta"
-	beta = 0.1
-	parameter = beta
-	numbmolecules = 11
-	numbblocks = 10000
-	numbpass = 100
-	preskip = 5000
-	postskip = 0
-	#extra_file_name = "TIP4P-2005-"
-	extra_file_name = ""
-
-	# compulsory parameters
-	dipolemoment = -1.0
-	gfact = -1.0
-
-	rmin = 2.4
-	rmax =9.7
-	dr = 0.1
-	nr = int(((rmax-rmin)+dr*0.5)/dr)
-	nr = nr+1
-	print(nr)
-	RList = [rmin+dr*i for i in range(nr)]
-	print(RList)
-
-	FigureGenerator.GetFigureOrderParam_vs_R(TypeCal, molecule_rot, TransRotMove, RotMove, variableName, RList, gfact, dipolemoment, parameterName, parameter, numbblocks, numbpass, numbmolecules, molecule, preskip, postskip, extra_file_name, final_results_path, TypePlot, purpose)
 '''
 
 if (TypePlot == "ExactEnergy"):

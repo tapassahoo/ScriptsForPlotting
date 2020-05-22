@@ -1911,52 +1911,60 @@ def GetFigureEntropyRT_vs_gFactor_COMPARE(TypeCal, ENT_TYPE, molecule_rot, Trans
 
 def GetKeyIndices(numbmolecules,molecule_rot,Rpt,FileToBePlotEnergy):	
 	if (numbmolecules == 11):
-		beads_skip_header = 11.0
-		if ((molecule_rot == "H2O") and (float(Rpt)>7.9)):
-			beads_skip_header = 11.0
-			beads_skip_footer = 101.0
-		elif ((molecule_rot == "H2O") and (float(Rpt) > 6.0) and (float(Rpt) <= 7.9)):
-			beads_skip_header = 11.0
-			beads_skip_footer = 141.0
+		beads_skip_header = 0.0
+		if ((molecule_rot == "H2O") and (float(Rpt)>8.0)):
+			beads_skip_header = 0.0
+			beads_skip_footer = 121.0
+		elif ((molecule_rot == "H2O") and (float(Rpt) > 7.0) and (float(Rpt) <= 8.0)):
+			beads_skip_header = 0.0
+			beads_skip_footer = 401.0
+		elif ((molecule_rot == "H2O") and (float(Rpt) > 6.0) and (float(Rpt) <= 7.0)):
+			beads_skip_header = 0.0
+			beads_skip_footer = 401.0
 		elif ((molecule_rot == "H2O") and ((float(Rpt) > 5.5) and (float(Rpt) <= 6.0))):
-			beads_skip_header = 41.0
-			beads_skip_footer = 181.0
+			beads_skip_header = 0.0
+			beads_skip_footer = 401.0
 		elif ((molecule_rot == "H2O") and ((float(Rpt) > 4.5) and (float(Rpt) <= 5.5))):
-			beads_skip_header = 51.0
-			beads_skip_footer = 201.0
-		elif ((molecule_rot == "H2O") and ((float(Rpt) > 3.5) and (float(Rpt) <= 4.5))):
-			beads_skip_header = 61.0
-			beads_skip_footer = 251.0
-		elif ((molecule_rot == "H2O") and ((float(Rpt) > 3.0) and (float(Rpt) <= 3.5))):
-			beads_skip_header = 81.0
-			beads_skip_footer = 251.0
+			beads_skip_header = 11.0
+			beads_skip_footer = 401.0
+		elif ((molecule_rot == "H2O") and ((float(Rpt) > 4.0) and (float(Rpt) <= 4.5))):
+			beads_skip_header = 21.0
+			beads_skip_footer = 401.0
+		elif ((molecule_rot == "H2O") and ((float(Rpt) > 3.0) and (float(Rpt) <= 4.0))):
+			beads_skip_header = 31.0
+			beads_skip_footer = 401.0
 		elif ((molecule_rot == "H2O") and ((float(Rpt) > 2.0) and (float(Rpt) <= 3.0))):
-			beads_skip_header = 101.0
-			beads_skip_footer = 451.0
+			beads_skip_header = 41.0
+			beads_skip_footer = 401.0
+	
 	if (numbmolecules == 2):
-		beads_skip_header = 11.0
-		if ((molecule_rot == "H2O") and (float(Rpt)>7.9)):
-			beads_skip_header = 11.0
+		beads_skip_header = 0.0
+		if ((molecule_rot == "H2O") and (float(Rpt)>8.0)):
+			beads_skip_header = 0.0
 			beads_skip_footer = 101.0
-		elif ((molecule_rot == "H2O") and (float(Rpt) > 6.0) and (float(Rpt) <= 7.9)):
-			beads_skip_header = 11.0
+		elif ((molecule_rot == "H2O") and (float(Rpt) > 7.0) and (float(Rpt) <= 8.0)):
+			beads_skip_header = 0.0
+			beads_skip_footer = 121.0
+		elif ((molecule_rot == "H2O") and (float(Rpt) > 6.0) and (float(Rpt) <= 7.0)):
+			beads_skip_header = 0.0
 			beads_skip_footer = 141.0
 		elif ((molecule_rot == "H2O") and ((float(Rpt) > 5.5) and (float(Rpt) <= 6.0))):
-			beads_skip_header = 41.0
-			beads_skip_footer = 181.0
+			beads_skip_header = 0.0
+			beads_skip_footer = 401.0
 		elif ((molecule_rot == "H2O") and ((float(Rpt) > 4.5) and (float(Rpt) <= 5.5))):
-			beads_skip_header = 51.0
-			beads_skip_footer = 201.0
-		elif ((molecule_rot == "H2O") and ((float(Rpt) > 3.5) and (float(Rpt) <= 4.5))):
-			beads_skip_header = 61.0
-			beads_skip_footer = 251.0
-		elif ((molecule_rot == "H2O") and ((float(Rpt) > 3.0) and (float(Rpt) <= 3.5))):
-			beads_skip_header = 81.0
-			beads_skip_footer = 251.0
-		elif ((molecule_rot == "H2O") and ((float(Rpt) > 2.0) and (float(Rpt) <= 3.0))):
-			beads_skip_header = 101.0
-			beads_skip_footer = 451.0
-	beads_moribs = genfromtxt(FileToBePlotEnergy, unpack=True, usecols=[0])
+			beads_skip_header = 0.0
+			beads_skip_footer = 401.0
+		elif ((molecule_rot == "H2O") and ((float(Rpt) > 4.0) and (float(Rpt) <= 4.5))):
+			beads_skip_header = 0.0
+			beads_skip_footer = 401.0
+		elif ((molecule_rot == "H2O") and ((float(Rpt) > 3.1) and (float(Rpt) <= 4.0))):
+			beads_skip_header = 21.0
+			beads_skip_footer = 401.0
+		elif ((molecule_rot == "H2O") and ((float(Rpt) > 2.0) and (float(Rpt) <= 3.1))):
+			beads_skip_header = 31.0
+			beads_skip_footer = 401.0
+
+	beads_moribs = genfromtxt(FileToBePlotEnergy, unpack=True, usecols=[1])
 
 	if (np.isin(beads_skip_header, list(beads_moribs)) == True):
 		beads_skip_header_final = (np.where(beads_moribs == beads_skip_header)[0])[0]
@@ -1970,74 +1978,6 @@ def GetKeyIndices(numbmolecules,molecule_rot,Rpt,FileToBePlotEnergy):
 
 	return beads_skip_header_final, beads_skip_footer_final
 
-def GetFigureOrderParam_vs_R(TypeCal,molecule_rot,TransMove,RotMove,variableName,RList,gfact,dipolemoment,parameterName,parameter,numbblocks,numbpass,numbmolecules,molecule,preskip,postskip,extra_file_name,src_dir,TypePlot,purpose):
-	ENT_TYPE=""
-	particleA=1
-
-	var_plot = 'eiejz'
-	indices = {'eiejx':2, 'eiejy':3, 'eiejz':4, 'eiej':5, 'eix':6, 'eiy':7, 'eiz':8}
-	err_indices = {'eiejx':9, 'eiejy':10, 'eiejz':11, 'eiej':12, 'eix':13, 'eiy':14, 'eiz':15}
-	title_plot = {'eiejx':'-eiejx.pdf','eiejy':'-eiejy.pdf','eiejz':'-eiejz.pdf','eiej':'-eiej.pdf','eix':'-eix.pdf','eiy':'-eiy.pdf','eiz':'-eiz.pdf'}
-	fx = np.zeros(len(RList))
-	fx_err = np.zeros(len(RList))
-	i=0
-	for Rpt1 in RList:
-		Rpt = "{:3.1f}".format(Rpt1)
-		parameter1=parameter
-		if ((Rpt1 >= 7.0) and (numbmolecules == 11)):
-			parameter1 = 0.2
-		if ((Rpt1 >= 8.0) and (numbmolecules == 2)):
-			parameter1 = 0.2
-		FilePlotName=support.GetFileNamePlot(TypeCal,molecule_rot,TransMove,RotMove,variableName,float(Rpt),gfact,dipolemoment,parameterName,parameter1,numbblocks,numbpass,numbmolecules,molecule,ENT_TYPE,preskip,postskip,extra_file_name,src_dir,particleA,11)
-
-		FileToBePlotEnergy = FilePlotName.SaveCorr+".txt"
-		#print(FileToBePlotEnergy)
-		beads_skip_header_final, beads_skip_footer_final = 0, 3#GetKeyIndices(numbmolecules,molecule_rot,Rpt,FileToBePlotEnergy)	
-		if (Rpt1 >= 9.7):
-			beads_skip_header_final, beads_skip_footer_final = 0, 5#GetKeyIndices(numbmolecules,molecule_rot,Rpt,FileToBePlotEnergy)	
-
-		beads_vec,valTau, valCorr, errorCorr = genfromtxt(FileToBePlotEnergy, unpack=True, usecols=[0, 1, indices[var_plot], err_indices[var_plot]], skip_header=beads_skip_header_final, skip_footer=beads_skip_footer_final)
-		#print(beads_vec)
-
-		fx[i]=valCorr[-1]
-		fx_err[i]=errorCorr[-1]
-		print(fx[i],'  ',fx_err[i])
-		i+=1
-
-	#Plot begins
-	font = 24
-	fontlegend = font/2.0
-	fig = plt.figure(figsize=(8, 6))
-
-	FilePlotName=support.GetFileNamePlot(TypeCal,molecule_rot,TransMove,RotMove,variableName,1.0,gfact,dipolemoment,parameterName,parameter,numbblocks,numbpass,numbmolecules,molecule,ENT_TYPE,preskip,postskip,extra_file_name,src_dir,particleA,11)
-	FilePlotEnergy = FilePlotName.SaveCorr_vs_R
-	print(FilePlotEnergy+title_plot[var_plot])
-	#call(["rm", FilePlotEnergy+title_plot[var_plot]])
-
-	# Plotting of fitting data
-	plt.errorbar(RList, fx, yerr=fx_err, color='black', ls='-', linewidth=1,  marker='o', markersize=8, capsize=2, capthick=1, ecolor='black', label="PIGS")
-
-	ymin, ymax = plt.ylim()
-	midpointy = 0.5*(ymax-ymin)
-	deltay = midpointy*0.15
-	xmin, xmax = plt.xlim()
-	midpointx = 0.5*(xmax-xmin)
-	deltax = midpointx*0.15
-	textpositionx = xmin+midpointx-0.25*midpointx
-	textpositiony = ymin+midpointy
-	plt.yticks(fontsize=font, rotation=0)
-	plt.xticks(fontsize=font, rotation=0)
-	plt.xlim(2.0,10.1)
-
-	plt.xlabel(r'$\mathrm{Lattice \ spacing \ (\AA)}$',fontsize=font,labelpad=2)
-	plt.ylabel(r'$\langle\vec{e}^{z}_{i} \cdot \vec{e}^{z}_{j}\rangle$',fontsize=font,labelpad=5)
-
-	plt.rcParams["font.family"] = "serif"
-	plt.rcParams["mathtext.fontset"] = "dejavuserif"
-	plt.subplots_adjust(top=0.98,bottom=0.14,left=0.14,right=0.99,hspace=0.0,wspace=0.0)
-	plt.legend(numpoints=1,loc=('upper right'),fontsize=font*0.6)
-	plt.savefig(FilePlotEnergy+title_plot[var_plot], format='pdf')
-	plt.show()
 
 def GetFigureEntropy_vs_R_lanczos():
 	fig = plt.figure(figsize=(8, 12))
@@ -2304,19 +2244,12 @@ def GetFigureEnergy_vs_R_lanczos():
 			FileToBePlotFinal = FileToBePlot+str(jrot)+"-grid-"+str(gtheta)+"-"+str(gphi)+"-qTIP4P.txt"
 			var, val = genfromtxt(FileToBePlotFinal, unpack=True, usecols=[0, plotNumber], skip_header=0, skip_footer=0)
 			val = val/kcalmolinvKinv
-			plt.plot(var, val, color=colorList[iplot], ls=lsList[0], linewidth=1, marker=markerList[iplot], markersize=4, label="J="+str(jrot))
+			plt.plot(var, val, color=colorList[iplot], ls=lsList[0], linewidth=1, marker=markerList[iplot], markersize=4, label=r'$J=$'+' '+str(jrot))
 			iplot+=1
 
 		plt.xlabel(r'$r \ \mathrm{(\AA)}$',labelpad=2)
 		plt.ylabel(ylabelList[plotNumber],labelpad=4)
 
-		'''
-		if (plotNumber == 1):
-			plt.ylim(0.25,2.3)
-		if (plotNumber == 2):
-			plt.ylim(0.0,2.0)
-		'''
-		
 		plt.xlim(2.0,10.1)
 		ymin, ymax = plt.ylim()
 		midpointy = 0.5*(ymax-ymin)
@@ -2331,7 +2264,6 @@ def GetFigureEnergy_vs_R_lanczos():
 		plt.tick_params(axis="both", direction="in", which="minor", right=True, top=True, length=2)
 		plt.tick_params(axis="both", direction="in", which="major", right=True, top=True, length=6)
 
-		#plt.set_rasterized(True)
 		plt.legend(numpoints=1,loc=('upper right'))
 	plt.subplots_adjust(top=0.99, bottom=0.12, left=0.11, right=0.99, hspace=0.0, wspace=0.0)
 	plt.savefig(FilePlot, dpi=50, format='eps',rasterized=True)
@@ -2387,7 +2319,7 @@ def GetFigureEnergyRot_vs_beta(TypeCal,molecule_rot,TransMove,RotMove,variableNa
 	plt.errorbar(valTau[trunc:], valTotalEnergy[trunc:], yerr=errorTotalEnergy[trunc:], color='blue', ls='-', linewidth=1, marker='o', markersize=8, capsize=2, capthick=1, ecolor='blue', label=label_str)
 
 	#For axis lebelling
-	plt.xlabel(r'$\beta \ (\mathrm{K^{-1}})$', labelpad=5)
+	plt.xlabel(r'$\beta \ (K^{-1})$', labelpad=5)
 	plt.ylabel(r'$E_{0} \ (\mathrm{kcal/mol})$',labelpad=5)
 
 	#For text lebelling
@@ -2441,38 +2373,33 @@ def GetFigureEnergyRot_vs_tau(TypeCal,molecule_rot,TransMove,RotMove,variableNam
 	FileToBePlotEnergy = FilePlotName.SaveEnergy+".txt"
 	print(FileToBePlotEnergy)
 
-	data_input = genfromtxt(FileToBePlotEnergy, unpack=True, skip_header=0, skip_footer=0)
+	beads_skip_header_final, beads_skip_footer_final = GetKeyIndices(numbmolecules,molecule_rot,Rpt,FileToBePlotEnergy)	
+	data_input = np.genfromtxt(FileToBePlotEnergy, unpack=True)
 
 	if (extra_file_name == "COM-Bisection-Norm-moves-"):
 		trunc = 2
-		rmlist=[181]
 		label_str = "PIGS/TIP4P/2005"
 		label_panel = "(a)"
 	elif (extra_file_name == "COM-and-Bisection-moves-"):
 		trunc = 3
-		rmlist=[161]
 		label_str = "PIGS/TIP4P/2005"
 		label_panel = "(b)"
 	elif (extra_file_name == "qTIP4P-"):
-		trunc = 0
-		rmlist=[1]
+		trunc = beads_skip_header_final
+		trunce = int(len(data_input[0]))-beads_skip_footer_final
+		print(trunc,trunce)
 		label_str = "PIGS/q-TIP4P"
 		label_panel = ""
 	elif (extra_file_name == "qspcfw-"):
 		trunc = 3
-		rmlist=[1]
 		label_str = "PIGS/q-SPC/Fw"
 		label_panel = "(c)"
 	else:
 		trunc = 3
-		rmlist=[121, 181]
 		label_str = "PIGS/TIP4P/2005"
 		label_panel = "(a)"
 
 	#Reading raw PIGS data
-	for rm_bead in rmlist:
-		rm_index=np.where(data_input[1]==rm_bead)[0]
-		data_input=np.delete(data_input, rm_index, axis=1)
 	print(data_input[1])
 	beads_vec=data_input[1]
 	valTau=data_input[2]
@@ -2484,8 +2411,8 @@ def GetFigureEnergyRot_vs_tau(TypeCal,molecule_rot,TransMove,RotMove,variableNam
 	errorTotalEnergy=data_input[8]/kcalmolinvKinv
 
 	# Fitting of PIGS data
-	fitting_term = "quatric" 
-	tvar, EnergyFitPlot, ErrorFitPlot = GetFitEnergy(valTau[trunc:], valTotalEnergy[trunc:], errorTotalEnergy[trunc:], variableName, fitting_term)
+	fitting_term = "quatric"
+	tvar, EnergyFitPlot, ErrorFitPlot = GetFitEnergy(valTau[trunc:trunce], valTotalEnergy[trunc:trunce], errorTotalEnergy[trunc:trunce], variableName, fitting_term)
 	energy_fit=EnergyFitPlot[0]
 	energy_fit_error=ErrorFitPlot
 	print("")
@@ -2497,7 +2424,7 @@ def GetFigureEnergyRot_vs_tau(TypeCal,molecule_rot,TransMove,RotMove,variableNam
 	call(["rm", FilePlotEnergy+"-tot.pdf"])
 
 	#PIGS data
-	plt.errorbar(valTau[trunc:], valTotalEnergy[trunc:], yerr=errorTotalEnergy[trunc:], color='blue', ls='None', linewidth=1, marker='o', markersize=8, capsize=2, capthick=1, ecolor='blue', label=label_str,zorder=0)
+	plt.errorbar(valTau[trunc:trunce], valTotalEnergy[trunc:trunce], yerr=errorTotalEnergy[trunc:trunce], color='blue', ls='None', linewidth=1, marker='o', markersize=8, capsize=2, capthick=1, ecolor='blue', label=label_str,zorder=0)
 	#compared_with=-4.54
 	#compared_with_err=0.04
 	#plt.errorbar(tvar[0], compared_with, yerr=compared_with_err, color='red', ls='None', linewidth=1,  marker='H', markersize=8, capsize=2, capthick=1, ecolor='red', label=label_str,zorder=5)
@@ -2507,12 +2434,14 @@ def GetFigureEnergyRot_vs_tau(TypeCal,molecule_rot,TransMove,RotMove,variableNam
 
 
 	# Exact data plotting
-	file_exact_val="/Users/tsahoo/ResultsOfExact/ground-state-energy-vs-Rpt-arpack-2-p-H2O-jmax3-grid-7-14-qTIP4P.txt"
-	data_exact = genfromtxt(file_exact_val, unpack=True, skip_header=0, skip_footer=0)
-	r_data_exact = data_exact[0]
-	energy_data_exact = data_exact[1]/kcalmolinvKinv
-	index_data_exact = np.where(r_data_exact == float(Rpt))[0][0]
-	plt.plot(tvar[0], energy_data_exact[index_data_exact], color='red', ls=None, linewidth=1, marker='D', markersize=6, label="ARPACK lanczos", zorder=20)
+	if (numbmolecules == 2): 
+		file_exact_val="/Users/tsahoo/ResultsOfExact/ground-state-energy-vs-Rpt-arpack-2-p-H2O-jmax4-grid-9-18-qTIP4P.txt"
+		data_exact = genfromtxt(file_exact_val, unpack=True, skip_header=0, skip_footer=0)
+		r_data_exact = data_exact[0]
+		energy_data_exact = data_exact[1]/kcalmolinvKinv
+		index_data_exact = np.where(r_data_exact == float(Rpt))[0][0]
+		if (float(Rpt) >= 5.0):
+			plt.plot(tvar[0], energy_data_exact[index_data_exact], color='red', ls=None, linewidth=1, marker='D', markersize=6, label="ARPACK lanczos: "+r'$J= \ 4$', zorder=20)
 	
 
 	#For axis lebelling
@@ -2540,8 +2469,60 @@ def GetFigureEnergyRot_vs_tau(TypeCal,molecule_rot,TransMove,RotMove,variableNam
 	plt.tick_params(axis="both", direction="in", which="major", right=True, top=True, length=6)
 
 	#Adjust the plot
-	plt.legend(numpoints=1,loc=('upper right'))
-	plt.subplots_adjust(top=0.99,bottom=0.12,left=0.15,right=0.99,hspace=0.0,wspace=0.0)
+	plt.legend(numpoints=1,loc=('center left'))
+	if (numbmolecules == 11):
+		if (float(Rpt) == 2.7):
+			plt.subplots_adjust(top=0.99,bottom=0.12,left=0.12,right=0.99,hspace=0.0,wspace=0.0)
+		elif ((float(Rpt) >= 2.8) and (float(Rpt) <=3.2)):
+			plt.subplots_adjust(top=0.99,bottom=0.12,left=0.14,right=0.99,hspace=0.0,wspace=0.0)
+		elif ((float(Rpt) >= 3.3) and (float(Rpt) <=3.4)):
+			plt.subplots_adjust(top=0.99,bottom=0.12,left=0.16,right=0.99,hspace=0.0,wspace=0.0)
+		elif ((float(Rpt) >= 3.5) and (float(Rpt) <=4.5)):
+			plt.subplots_adjust(top=0.99,bottom=0.12,left=0.14,right=0.99,hspace=0.0,wspace=0.0)
+		elif ((float(Rpt) >= 4.6) and (float(Rpt) <=4.7)):
+			plt.subplots_adjust(top=0.99,bottom=0.12,left=0.16,right=0.99,hspace=0.0,wspace=0.0)
+		elif (float(Rpt) == 4.8):
+			plt.subplots_adjust(top=0.99,bottom=0.12,left=0.14,right=0.99,hspace=0.0,wspace=0.0)
+		elif ((float(Rpt) >= 5.0) and (float(Rpt) <=6.4)):
+			plt.subplots_adjust(top=0.99,bottom=0.12,left=0.13,right=0.99,hspace=0.0,wspace=0.0)
+		elif ((float(Rpt) >= 6.6) and (float(Rpt) <=7.0)):
+			plt.subplots_adjust(top=0.99,bottom=0.12,left=0.14,right=0.99,hspace=0.0,wspace=0.0)
+		elif ((float(Rpt) >= 7.2) and (float(Rpt) <=7.4)):
+			plt.subplots_adjust(top=0.99,bottom=0.12,left=0.16,right=0.99,hspace=0.0,wspace=0.0)
+		elif ((float(Rpt) >= 7.6) and (float(Rpt) <=9.4)):
+			plt.subplots_adjust(top=0.99,bottom=0.12,left=0.14,right=0.99,hspace=0.0,wspace=0.0)
+		elif ((float(Rpt) >= 9.6) and (float(Rpt) <=10.0)):
+			plt.subplots_adjust(top=0.99,bottom=0.12,left=0.16,right=0.99,hspace=0.0,wspace=0.0)
+		else:
+			plt.subplots_adjust(top=0.99,bottom=0.12,left=0.14,right=0.99,hspace=0.0,wspace=0.0)
+	#
+	if (numbmolecules == 2):
+		if ((float(Rpt) >= 2.7) and (float(Rpt) <=2.8)):
+			plt.subplots_adjust(top=0.99,bottom=0.12,left=0.13,right=0.99,hspace=0.0,wspace=0.0)
+		elif ((float(Rpt) >= 2.9) and (float(Rpt) <=3.6)):
+			plt.subplots_adjust(top=0.99,bottom=0.12,left=0.14,right=0.99,hspace=0.0,wspace=0.0)
+		elif (float(Rpt) == 3.7):
+			plt.subplots_adjust(top=0.99,bottom=0.12,left=0.16,right=0.99,hspace=0.0,wspace=0.0)
+		elif ((float(Rpt) >= 3.8) and (float(Rpt) <=4.2)):
+			plt.subplots_adjust(top=0.99,bottom=0.12,left=0.14,right=0.99,hspace=0.0,wspace=0.0)
+		elif ((float(Rpt) >= 4.3) and (float(Rpt) <=4.4)):
+			plt.subplots_adjust(top=0.99,bottom=0.12,left=0.16,right=0.99,hspace=0.0,wspace=0.0)
+		elif ((float(Rpt) >= 4.5) and (float(Rpt) <=4.6)):
+			plt.subplots_adjust(top=0.99,bottom=0.12,left=0.15,right=0.99,hspace=0.0,wspace=0.0)
+		elif ((float(Rpt) >= 4.7) and (float(Rpt) <=5.0)):
+			plt.subplots_adjust(top=0.99,bottom=0.12,left=0.14,right=0.99,hspace=0.0,wspace=0.0)
+		elif ((float(Rpt) >= 5.2) and (float(Rpt) <=5.8)):
+			plt.subplots_adjust(top=0.99,bottom=0.12,left=0.14,right=0.99,hspace=0.0,wspace=0.0)
+		elif ((float(Rpt) >= 6.0) and (float(Rpt) <=6.4)):
+			plt.subplots_adjust(top=0.99,bottom=0.12,left=0.16,right=0.99,hspace=0.0,wspace=0.0)
+		elif ((float(Rpt) >= 6.6) and (float(Rpt) <=6.8)):
+			plt.subplots_adjust(top=0.99,bottom=0.12,left=0.17,right=0.99,hspace=0.0,wspace=0.0)
+		elif ((float(Rpt) >= 7.0) and (float(Rpt) <=8.6)):
+			plt.subplots_adjust(top=0.99,bottom=0.12,left=0.16,right=0.99,hspace=0.0,wspace=0.0)
+		elif ((float(Rpt) >= 8.8) and (float(Rpt) <=10.0)):
+			plt.subplots_adjust(top=0.99,bottom=0.12,left=0.17,right=0.99,hspace=0.0,wspace=0.0)
+		else:
+			plt.subplots_adjust(top=0.99,bottom=0.12,left=0.14,right=0.99,hspace=0.0,wspace=0.0)
 	#if (extra_file_name != "qTIP4PF-"):
 	#	handles, labels = plt.gca().get_legend_handles_labels()
 	#	order = [1,0,2]
@@ -2554,6 +2535,8 @@ def GetFigureEnergyRot_vs_tau(TypeCal,molecule_rot,TransMove,RotMove,variableNam
 def GetFigureEnergyRot_vs_R(TypeCal,molecule_rot,TransMove,RotMove,variableName,RList,gfact,dipolemoment,parameterName,parameter,numbblocks,numbpass,numbmolecules,molecule,preskip,postskip,extra_file_name,src_dir,TypePlot,purpose):
 	ENT_TYPE=""
 	particleA=1
+	Units = support.GetUnitConverter()
+	kcalmolinvKinv = Units.kcalmoleinvToKelvin
 
 	energy_fit = np.zeros(len(RList))
 	energy_fit_error = np.zeros(len(RList))
@@ -2561,62 +2544,65 @@ def GetFigureEnergyRot_vs_R(TypeCal,molecule_rot,TransMove,RotMove,variableName,
 	for Rpt1 in RList:
 		Rpt = "{:3.1f}".format(Rpt1)
 		parameter1=parameter
-		if ((Rpt1 >= 7.0) and (numbmolecules == 11)):
-			parameter1 = 0.2
-		if ((Rpt1 >= 8.0) and (numbmolecules == 2)):
-			parameter1 = 0.2
 		FilePlotName=support.GetFileNamePlot(TypeCal,molecule_rot,TransMove,RotMove,variableName,float(Rpt),gfact,dipolemoment,parameterName,parameter1,numbblocks,numbpass,numbmolecules,molecule,ENT_TYPE,preskip,postskip,extra_file_name,src_dir,particleA,11)
 
 		FileToBePlotEnergy = FilePlotName.SaveEnergy+".txt"
 		#print(FileToBePlotEnergy)
 		beads_skip_header_final, beads_skip_footer_final = GetKeyIndices(numbmolecules,molecule_rot,Rpt,FileToBePlotEnergy)	
 
-		beads_vec,valTau, valRotEnergy, valPotEnergy, valTotalEnergy, errorRotEnergy, errorPotEnergy, errorTotalEnergy = genfromtxt(FileToBePlotEnergy, unpack=True, usecols=[0, 1, 3, 4, 5, 7, 8, 9], skip_header=beads_skip_header_final, skip_footer=beads_skip_footer_final)
-		#print(beads_vec)
+		beads_vec1, valTau1, valTotalEnergy1, errorTotalEnergy1 = np.genfromtxt(FileToBePlotEnergy, unpack=True, usecols=[1, 2, 5, 8], skip_header=0, skip_footer=0)
+		trunc=beads_skip_header_final
+		trunce=int(len(beads_vec1))-beads_skip_footer_final
+		print(beads_vec1[trunc:trunce])
+		valTau = valTau1[trunc:trunce]
+		valTotalEnergy = valTotalEnergy1[trunc:trunce]/kcalmolinvKinv
+		errorTotalEnergy = errorTotalEnergy1[trunc:trunce]/kcalmolinvKinv
 
 		# Fitting of PIGS data
-		tvar, EnergyFitPlot, ErrorFitPlot = GetFitEnergy(valTau, valTotalEnergy, errorTotalEnergy, variableName)
+		fitting_term = "quatric" 
+		tvar, EnergyFitPlot, ErrorFitPlot = GetFitEnergy(valTau, valTotalEnergy, errorTotalEnergy, variableName, fitting_term)
 		energy_fit[i]=EnergyFitPlot[0]
 		energy_fit_error[i]=ErrorFitPlot
 		print(Rpt,'  ',energy_fit[i],'  ',energy_fit_error[i])
 		i+=1
 
 	#Plot begins
-	font = 24
-	fontlegend = font/2.0
-	fig = plt.figure(figsize=(8, 6))
-
 	FilePlotName=support.GetFileNamePlot(TypeCal,molecule_rot,TransMove,RotMove,variableName,1.0,gfact,dipolemoment,parameterName,parameter,numbblocks,numbpass,numbmolecules,molecule,ENT_TYPE,preskip,postskip,extra_file_name,src_dir,particleA,11)
-	FilePlotEnergy = FilePlotName.SaveEnergy_vs_R
+	FilePlotEnergy = FilePlotName.SaveEnergyFitvsR
 	print(FilePlotEnergy+"-tot.pdf")
 	call(["rm", FilePlotEnergy+"-tot.pdf"])
 
 	# Plotting of fitting data
-	plt.errorbar(RList, energy_fit, yerr=energy_fit_error, color='black', ls=None, linewidth=2,  marker='o', markersize=8, capsize=2, capthick=1, ecolor='black', label="PIGS-Fit", zorder=0)
+	plt.errorbar(RList, energy_fit, yerr=energy_fit_error, color='black', ls=None, linewidth=1,  marker='o', markersize=8, capsize=2, capthick=1, ecolor='black', label="PIGS", zorder=0)
 
 	if (numbmolecules == 2):
-		colorList = ['m', 'c', 'g', 'r', 'b']
-		markerList = ['h', 'p', '>', 's', '<', '8', 'p']
+		colorList = ['r', 'm', 'g', 'r', 'b']
+		markerList = ['s', 'p', '>', 's', '<', '8', 'p']
 		lsList = ['-', '--', '-.', ':']
 		iplot=0
-		for jrot in range(2,11,2):
-			if (jrot <= 4):
-				gtheta = int(2*jrot+3)
-				gphi = int(2*(2*jrot+1))
-			else:
-				gtheta = int(jrot+2)
-				gphi = int(2*jrot+2)
-			FileToBePlotEnergy_exact = "/Users/tsahoo/ResultsOfExact/ground-state-energy-vs-Rpt-lanc-2-p-H2O-jmax"+str(jrot)+"-grid-"+str(gtheta)+"-"+str(gphi)+"-niter100.txt"
-			Rpt_exact, TotalEnergy_exact = genfromtxt(FileToBePlotEnergy_exact, unpack=True, usecols=[0, 1], skip_header=0, skip_footer=0)
-			plt.plot(Rpt_exact, TotalEnergy_exact, color=colorList[iplot], ls=lsList[0], linewidth=1, marker=markerList[iplot], markersize=6, label="Lanczos iter: J="+str(jrot))
-			iplot+=1
+		rmlist = [5.1+0.2*i for i in range(25)]
+		for jrot in range(4, 5):
+			gtheta = int(2*jrot+1)
+			gphi = int(2*(2*jrot+1))
 
-	plt.xlabel(r'$\mathrm{Lattice \ spacing \ (\AA)}$',fontsize=font,labelpad=2)
-	plt.ylabel(r'$\mathrm{E_{0} \ (Kelvin)}$',fontsize=font,labelpad=2)
+			FileToBePlotEnergy_exact="/Users/tsahoo/ResultsOfExact/ground-state-energy-vs-Rpt-arpack-2-p-H2O-jmax"+str(jrot)+"-grid-"+str(gtheta)+"-"+str(gphi)+"-qTIP4P.txt"
+			data_input = genfromtxt(FileToBePlotEnergy_exact, unpack=True, skip_header=0, skip_footer=0)
+			for rm_val in rmlist:
+				rm_val = "{:3.1f}".format(rm_val)
+				rm_index=np.where(data_input[0]==float(rm_val))[0]
+				data_input=np.delete(data_input, rm_index, axis=1)
+			Rpt_exact = data_input[0]
+			TotalEnergy_exact = data_input[1]/kcalmolinvKinv
+			plt.plot(Rpt_exact, TotalEnergy_exact, color=colorList[iplot], ls=lsList[0], linewidth=1, marker=markerList[iplot], markersize=6, label="ARPACK Lanczos: "+r'$J=$'+' '+str(jrot))
+			iplot = iplot+1
 
-	plt.xlim(2.0,10.1)
+	#For axis lebelling
+	plt.xlabel(r'$r \ (\mathrm{\AA})$', labelpad=5)
+	plt.ylabel(r'$E_{0} \ (\mathrm{kcal/mol})$',labelpad=5)
+
+	#For text lebelling
+	xmin, xmax = plt.xlim()
 	ymin, ymax = plt.ylim()
-	plt.ylim(ymin,0)
 	midpointy = 0.5*(ymax-ymin)
 	deltay = midpointy*0.15
 	xmin, xmax = plt.xlim()
@@ -2624,18 +2610,119 @@ def GetFigureEnergyRot_vs_R(TypeCal,molecule_rot,TransMove,RotMove,variableName,
 	deltax = midpointx*0.15
 	textpositionx = xmin+midpointx-0.25*midpointx
 	textpositiony = ymin+midpointy
-	plt.yticks(fontsize=font, rotation=0)
-	plt.xticks(fontsize=font, rotation=0)
 
-	plt.text(xmin+(xmax-xmin)*0.35,ymax-(ymax-ymin)*0.07,r'$N = \ $'+str(numbmolecules),fontsize=font)
-	plt.ticklabel_format(style='sci',scilimits=(-3,3),axis='y')
-	#f = mticker.ScalarFormatter(useOffset=False, useMathText=True)
-	#g = lambda y,pos : "${}$".format(f._formatSciNotation('%1.10e' % valTotalEnergy))
-	#plt.gca().yaxis.set_major_formatter(mticker.FuncFormatter(g))
+	plt.text(xmin+(xmax-xmin)*0.40,ymax-(ymax-ymin)*0.52,r'$N = \ $'+str(numbmolecules))
+	#plt.text(xmin+(xmax-xmin)*0.01,ymax-(ymax-ymin)*0.15,label_panel)
 
-	plt.rcParams["font.family"] = "serif"
-	plt.rcParams["mathtext.fontset"] = "dejavuserif"
-	plt.subplots_adjust(top=0.96,bottom=0.14,left=0.15,right=0.99,hspace=0.0,wspace=0.0)
-	plt.legend(numpoints=1,loc=('center right'),fontsize=font*0.6)
+	#For ticks manipulating
+	plt.minorticks_on()
+	plt.tick_params(axis="both", direction="in", which="minor", right=False, top=False, length=2)
+	plt.tick_params(axis="both", direction="in", which="major", right=True, top=True, length=6)
+
+	#Adjust the plot
+	plt.legend(numpoints=1,loc=('center right'))
+	if (numbmolecules == 2):
+		plt.subplots_adjust(top=0.99,bottom=0.12,left=0.11,right=0.99,hspace=0.0,wspace=0.0)
+	if (numbmolecules == 11):
+		plt.subplots_adjust(top=0.99,bottom=0.12,left=0.12,right=0.99,hspace=0.0,wspace=0.0)
 	plt.savefig(FilePlotEnergy+"-tot.pdf", format='pdf')
+	plt.show()
+
+def GetFigureOrderParam_vs_R(TypeCal,molecule_rot,TransMove,RotMove,variableName,RList,gfact,dipolemoment,parameterName,parameter,numbblocks,numbpass,numbmolecules,molecule,preskip,postskip,extra_file_name,src_dir,TypePlot,purpose):
+	ENT_TYPE=""
+	particleA=1
+
+	indices = {'eiejx':3, 'eiejy':4, 'eiejz':5, 'eiej':6, 'eix':7, 'eiy':8, 'eiz':9}
+	err_indices = {'eiejx':10, 'eiejy':11, 'eiejz':12, 'eiej':13, 'eix':14, 'eiy':15, 'eiz':16}
+	title_plot = {'eiejx':'-eiejx.pdf','eiejy':'-eiejy.pdf','eiejz':'-eiejz.pdf','eiej':'-eiej.pdf','eix':'-eix.pdf','eiy':'-eiy.pdf','eiz':'-eiz.pdf'}
+	ylabel_plot = {'eiejx':r'$e_i^x \cdot e_j^x$','eiejy':r'$e_i^y \cdot e_j^y$','eiejz':r'$\langle e_i^z \cdot e_j^z \rangle$','eiej':r'$e_i \cdot e_j$','eix':r'$e_i^x$','eiy':r'$e_i^y$','eiz':r'$\langle e_i^z \rangle$'}
+	if (numbmolecules == 11):
+		norm = {'eiejx':6, 'eiejy':6, 'eiejz':6, 'eiej':6, 'eix':7, 'eiy':7, 'eiz':7}
+	if (numbmolecules == 2):
+		norm = {'eiejx':1, 'eiejy':1, 'eiejz':1, 'eiej':1, 'eix':1, 'eiy':1, 'eiz':1}
+
+	colorList = ['r', 'm', 'g', 'r', 'b']
+	markerList = ['s', 'p', '>', 's', '<', '8', 'p']
+	lsList = ['-', '--', '-.', ':']
+
+	var_plotList = ['eiejz','eiz']
+	iplot=0
+	for var_plot in var_plotList:
+		fx = np.zeros(len(RList))
+		fx_err = np.zeros(len(RList))
+		i=0
+		for Rpt1 in RList:
+			Rpt = "{:3.1f}".format(Rpt1)
+			parameter1=parameter
+			if ((Rpt1 >= 7.0) and (numbmolecules == 11)):
+				parameter1 = 0.1
+			if ((Rpt1 >= 8.0) and (numbmolecules == 2)):
+				parameter1 = 0.1
+			FilePlotName=support.GetFileNamePlot(TypeCal,molecule_rot,TransMove,RotMove,variableName,float(Rpt),gfact,dipolemoment,parameterName,parameter1,numbblocks,numbpass,numbmolecules,molecule,ENT_TYPE,preskip,postskip,extra_file_name,src_dir,particleA,11)
+
+			FileToBePlotEnergy = FilePlotName.SaveCorr+".txt"
+			#print(FileToBePlotEnergy)
+			beads_skip_header_final, beads_skip_footer_final = GetKeyIndices(numbmolecules,molecule_rot,Rpt,FileToBePlotEnergy)	
+
+			beads_vec1, valTau1, valCorr1, errorCorr1 = np.genfromtxt(FileToBePlotEnergy, unpack=True, usecols=[1, 2, indices[var_plot], err_indices[var_plot]], skip_header=0, skip_footer=0)
+			trunc=beads_skip_header_final
+			trunce=int(len(beads_vec1))-beads_skip_footer_final
+			print(beads_vec1[trunc:trunce])
+			valTau = valTau1[trunc:trunce]
+			valCorr = valCorr1[trunc:trunce]/norm[var_plot]
+			errorCorr = errorCorr1[trunc:trunce]/norm[var_plot]
+
+			# Fitting of PIGS data
+			fitting_term = "quatric" 
+			tvar, corrFit, errorFit = GetFitEnergy(valTau, valCorr, errorCorr, variableName, fitting_term)
+			fx[i]=corrFit[0]
+			fx_err[i]=errorFit
+			print(Rpt,'  ',fx[i],'  ',fx_err[i])
+			i+=1
+
+		#Plot begins
+		#FilePlotName=support.GetFileNamePlot(TypeCal,molecule_rot,TransMove,RotMove,variableName,1.0,gfact,dipolemoment,parameterName,parameter,numbblocks,numbpass,numbmolecules,molecule,ENT_TYPE,preskip,postskip,extra_file_name,src_dir,particleA,11)
+		#FilePlotEnergy = FilePlotName.SaveCorr_vs_R
+		#print(FilePlotEnergy+title_plot[var_plot])
+		#call(["rm", FilePlotEnergy+title_plot[var_plot]])
+
+		# Plotting of fitting data
+		plt.errorbar(RList, fx, yerr=fx_err, color=colorList[iplot], ls=lsList[iplot], linewidth=1,  marker=markerList[iplot], markersize=8, capsize=2, capthick=1, ecolor=colorList[iplot], label=ylabel_plot[var_plot])
+		iplot = iplot+1
+
+	#plt.ylim(0.0,1.0)
+	ymin, ymax = plt.ylim()
+	midpointy = 0.5*(ymax-ymin)
+	deltay = midpointy*0.15
+	xmin, xmax = plt.xlim()
+	midpointx = 0.5*(xmax-xmin)
+	deltax = midpointx*0.15
+	textpositionx = xmin+midpointx-0.25*midpointx
+	textpositiony = ymin+midpointy
+	plt.text(xmin+(xmax-xmin)*0.40,ymax-(ymax-ymin)*0.52,r'$N = \ $'+str(numbmolecules))
+	plt.yticks(rotation=0)
+	plt.xticks(rotation=0)
+	#plt.xlim(2.0,10.1)
+
+	plt.ylabel("Order parameter",labelpad=5)
+	plt.xlabel(r'$r \ (\mathrm{\AA})$', labelpad=5)
+	if (numbmolecules == 2):
+		plt.subplots_adjust(top=0.99,bottom=0.12,left=0.11,right=0.99,hspace=0.06,wspace=0.0)
+	if (numbmolecules == 11):
+		plt.subplots_adjust(top=0.99,bottom=0.12,left=0.11,right=0.99,hspace=0.0,wspace=0.0)
+
+	plt.legend(numpoints=1,loc='upper right')
+
+	#For ticks manipulating
+	plt.minorticks_on()
+	plt.tick_params(axis="both", direction="in", which="minor", right=False, top=False, length=2)
+	plt.tick_params(axis="both", direction="in", which="major", right=True, top=True, length=6)
+
+	#Plot begins
+	FilePlotName=support.GetFileNamePlot(TypeCal,molecule_rot,TransMove,RotMove,variableName,1.0,gfact,dipolemoment,parameterName,parameter,numbblocks,numbpass,numbmolecules,molecule,ENT_TYPE,preskip,postskip,extra_file_name,src_dir,particleA,11)
+	FilePlotEnergy = FilePlotName.SaveCorrFitvsR
+	print(FilePlotEnergy+title_plot[var_plot])
+	call(["rm", FilePlotEnergy+title_plot[var_plot]])
+
+	plt.savefig(FilePlotEnergy+title_plot[var_plot], format='pdf')
 	plt.show()

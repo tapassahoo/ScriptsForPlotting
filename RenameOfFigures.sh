@@ -62,6 +62,6 @@ cp /Users/tsahoo/ResultsOfENT/ENT-RotDOFs-Rpt10.05Angstrom-Entropy-vs-gFactor-of
 #/Users/tsahoo/ResultsOfENT/ENT-RotDOFs-Rpt10.05Angstrom-Entropy-vs-gFactor-of-HF-fixed-beta0.2Kinv-Blocks20000-Passes100-preskip10000-postskip0-SWAPTOUNSWAP-Fit-a-article.pdf
 #/Users/tsahoo/ResultsOfENT/ENT-RotDOFs-Rpt10.05Angstrom-Entropy-vs-gFactor-of-HF-fixed-beta0.2Kinv-Blocks20000-Passes100-preskip10000-postskip0-SWAPTOUNSWAP-Fit-b-article.pdf
 #Final Figures obtained from with ratio trick
-END_COMMENT
 #Histogram plot: cos(theta) vs g
 cp /Users/tsahoo/ResultsOfENT/ENT-RotDOFs-Rpt10.05Angstrom-beta0.2Kinv-Blocks80000-Passes100-System8HF-ParticleA4-e0vsbeads-EXTENDED_ENSMBL-WOR-61-histogram-of-cost-vs-gFactor-preskip40000-postskip0.pdf /Users/tsahoo/Documents/MyArticles/dipole_pimc/Fig9.pdf
+END_COMMENT
