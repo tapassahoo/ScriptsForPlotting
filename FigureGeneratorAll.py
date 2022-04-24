@@ -17,10 +17,10 @@ variableName = "tau"
 #variableName = "beta"
 variableName1="distance"
 
-#TypePlot = "Energy"
+TypePlot = "Energy"
 #TypePlot = "ExactEnergy"
 #TypePlot = "Entropy"
-TypePlot = "OrderParam"
+#TypePlot = "OrderParam"
 #TypePlot = "Energy"
 # TypePlot="ChemPot"
 # TypePlot="CorrFunc"
@@ -30,7 +30,9 @@ molecule_rot = "H2O"
 
 purpose = "article"
 # purpose="ppt"
-final_results_path = os.path.expanduser("~") + "/ResultsOf" + TypeCal + "/"
+if (TypeCal == 'PIGS'):
+	cal_method = 'pigs'
+final_results_path = os.path.expanduser("~") + "/academic-project/outputs/results-of-" + cal_method + "/"
 
 if (((RotMove == True) and (TransMove == False) and (TypePlot == "Energy")) and ((variableName == "tau") or (variableName == "beta"))):
 	beta = 0.1
@@ -110,7 +112,6 @@ if (((RotMove == True) and (TransMove == False) and (TypePlot == "OrderParam")) 
 	
 	for preskip in preskipList:
 		if ((variableName == "tau") and (variableName1 == "distance")):
-			print("TApa")
 			parameterName = "beta"
 			parameter = beta
 

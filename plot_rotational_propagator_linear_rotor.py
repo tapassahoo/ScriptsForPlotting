@@ -2,7 +2,7 @@ import os
 from collections import OrderedDict
 from subprocess import call
 
-import matplotlib
+import matplotlib as mpl
 import matplotlib.axes
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mtick
@@ -13,25 +13,21 @@ from numpy import *
 from pylab import *
 
 # Global settings for plot
-rc('text', usetex=True)
-size=28
+size=24
 params = {'legend.fontsize': size*0.6,
     'figure.figsize': (8,6),
     'axes.labelsize': size,
     'axes.titlesize': size,
     'xtick.labelsize': size*0.75,
     'ytick.labelsize': size*0.75,
+	'font.family': 'sans-serif',
+	'mathtext.fontset':'dejavusans',
+	'font.size': size*0.75,
     'axes.titlepad': size}
 plt.rcParams.update(params)
-matplotlib.rcParams.update({'font.size': size*0.75})
-#plt.rcParams["font.family"] = "serif"
-#plt.rcParams["mathtext.fontset"] = "dejavusans"
-#plt.rcParams["mathtext.fontset"] = "serif"#"dejavuserif"
-rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
-rc('text', usetex=True)
 
 # The directory where all the input files are stored
-src_dir       = '/Users/tsahoo/dev-project/outputs/rotational_density_matrix/'
+src_dir       = '/Users/tsahoo/academic-project/outputs/rotational_density_matrix/'
 
 # Name of the inputs
 file_spinless = src_dir+'rotational_propagator_spinless_linear_rotor.out'
@@ -58,7 +54,7 @@ plt.legend(bbox_to_anchor=(0.35, 0.20), loc=2, borderaxespad=2.0, shadow=True)
 
 plt.ylabel(r'$\rho(\omega_{t, i}, \omega_{t+1, i}; \tau)$',labelpad=5)
 plt.xlabel(r'$\cos (\gamma_{t, i})$', labelpad=5)
-plt.subplots_adjust(top=0.98,bottom=0.14,left=0.14,right=0.99,hspace=0.0,wspace=0.0)
+plt.subplots_adjust(top=0.98,bottom=0.14,left=0.16,right=0.99,hspace=0.0,wspace=0.0)
 plt.legend(numpoints=1,loc='upper center')
 
 #For ticks manipulating

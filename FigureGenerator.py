@@ -4,12 +4,10 @@ from subprocess import call
 
 import matplotlib
 import matplotlib.axes
-# matplotlib.use('eps')
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mtick
 import matplotlib.ticker as mticker
 import numpy as np
-#from matplotlib.backends.backend_pdf import PdfPages
 from matplotlib.ticker import ScalarFormatter
 from numpy import *
 from pylab import *
@@ -17,11 +15,6 @@ from scipy.optimize import curve_fit
 
 import mypkg.pkgMoribs.support_without_parallel as support
 
-# rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
-# for Palatino and other serif fonts use:
-# rc('font',**{'family':'serif','serif':['Palatino']})
-
-rc('text', usetex=True)
 size=24
 params = {'legend.fontsize': size*0.6,
 	'figure.figsize': (8,6),
@@ -29,9 +22,9 @@ params = {'legend.fontsize': size*0.6,
 	'axes.titlesize': size,
 	'xtick.labelsize': size*0.75,
 	'ytick.labelsize': size*0.75,
+	'font.size': size*0.75,
 	'axes.titlepad': size}
 plt.rcParams.update(params)
-matplotlib.rcParams.update({'font.size': size*0.75})
 plt.rcParams["font.family"] = "serif"
 plt.rcParams["mathtext.fontset"] = "dejavuserif"
 
@@ -648,7 +641,7 @@ def fitFunc3(var, a, b):
 		return a+b*var*var
 
 def GetFitEnergy(val1, val2, val3, variableName, fitting_term):
-	t = np.linspace(0, np.max(val1), 1e+3)
+	t = np.linspace(0.0, np.max(val1), num=pow(10, 4))
 	if (fitting_term == "quatric"):
 		initialParameters = np.array([-1e4, -1e+8, 1e+12])
 		popt, pcov = curve_fit(fitFunc4, val1, val2, sigma=val3, p0=initialParameters)
@@ -2547,10 +2540,9 @@ def GetFigureEnergyRot_vs_R(TypeCal,molecule_rot,TransMove,RotMove,variableName,
 		FilePlotName=support.GetFileNamePlot(TypeCal,molecule_rot,TransMove,RotMove,variableName,float(Rpt),gfact,dipolemoment,parameterName,parameter1,numbblocks,numbpass,numbmolecules,molecule,ENT_TYPE,preskip,postskip,extra_file_name,src_dir,particleA,11)
 
 		FileToBePlotEnergy = FilePlotName.SaveEnergy+".txt"
-		#print(FileToBePlotEnergy)
 		beads_skip_header_final, beads_skip_footer_final = GetKeyIndices(numbmolecules,molecule_rot,Rpt,FileToBePlotEnergy)	
 
-		beads_vec1, valTau1, valTotalEnergy1, errorTotalEnergy1 = np.genfromtxt(FileToBePlotEnergy, unpack=True, usecols=[1, 2, 5, 8], skip_header=0, skip_footer=0)
+		beads_vec1, valTau1, valTotalEnergy1, errorTotalEnergy1 = np.genfromtxt(FileToBePlotEnergy, unpack=True, usecols=[1, 2, 4, 6], skip_header=0, skip_footer=0)
 		trunc=beads_skip_header_final
 		trunce=int(len(beads_vec1))-beads_skip_footer_final
 		print(beads_vec1[trunc:trunce])
@@ -2585,7 +2577,9 @@ def GetFigureEnergyRot_vs_R(TypeCal,molecule_rot,TransMove,RotMove,variableName,
 			gtheta = int(2*jrot+1)
 			gphi = int(2*(2*jrot+1))
 
-			FileToBePlotEnergy_exact="/Users/tsahoo/ResultsOfExact/ground-state-energy-vs-Rpt-arpack-2-p-H2O-jmax"+str(jrot)+"-grid-"+str(gtheta)+"-"+str(gphi)+"-qTIP4P.txt"
+			FileToBePlotEnergy_exact="/Users/tsahoo/academic-project/outputs/exact-computation/ground-state-energy-vs-Rpt-arpack-2-p-H2O-jmax"+str(jrot)+"-grid-"+str(gtheta)+"-"+str(gphi)+"-qTIP4P.txt"
+			print(FileToBePlotEnergy_exact)
+			exit()
 			data_input = genfromtxt(FileToBePlotEnergy_exact, unpack=True, skip_header=0, skip_footer=0)
 			for rm_val in rmlist:
 				rm_val = "{:3.1f}".format(rm_val)
@@ -2632,8 +2626,8 @@ def GetFigureOrderParam_vs_R(TypeCal,molecule_rot,TransMove,RotMove,variableName
 	ENT_TYPE=""
 	particleA=1
 
-	indices = {'eiejx':3, 'eiejy':4, 'eiejz':5, 'eiej':6, 'eix':7, 'eiy':8, 'eiz':9}
-	err_indices = {'eiejx':10, 'eiejy':11, 'eiejz':12, 'eiej':13, 'eix':14, 'eiy':15, 'eiz':16}
+	indices = {'eiejx':3, 'eiejy':4, 'eiejz':4, 'eiej':6, 'eix':7, 'eiy':8, 'eiz':3}
+	err_indices = {'eiejx':10, 'eiejy':11, 'eiejz':6, 'eiej':13, 'eix':14, 'eiy':15, 'eiz':5}
 	title_plot = {'eiejx':'-eiejx.pdf','eiejy':'-eiejy.pdf','eiejz':'-eiejz.pdf','eiej':'-eiej.pdf','eix':'-eix.pdf','eiy':'-eiy.pdf','eiz':'-eiz.pdf'}
 	ylabel_plot = {'eiejx':r'$e_i^x \cdot e_j^x$','eiejy':r'$e_i^y \cdot e_j^y$','eiejz':r'$\langle e_i^z \cdot e_j^z \rangle$','eiej':r'$e_i \cdot e_j$','eix':r'$e_i^x$','eiy':r'$e_i^y$','eiz':r'$\langle e_i^z \rangle$'}
 	if (numbmolecules == 11):
@@ -2661,7 +2655,6 @@ def GetFigureOrderParam_vs_R(TypeCal,molecule_rot,TransMove,RotMove,variableName
 			FilePlotName=support.GetFileNamePlot(TypeCal,molecule_rot,TransMove,RotMove,variableName,float(Rpt),gfact,dipolemoment,parameterName,parameter1,numbblocks,numbpass,numbmolecules,molecule,ENT_TYPE,preskip,postskip,extra_file_name,src_dir,particleA,11)
 
 			FileToBePlotEnergy = FilePlotName.SaveCorr+".txt"
-			#print(FileToBePlotEnergy)
 			beads_skip_header_final, beads_skip_footer_final = GetKeyIndices(numbmolecules,molecule_rot,Rpt,FileToBePlotEnergy)	
 
 			beads_vec1, valTau1, valCorr1, errorCorr1 = np.genfromtxt(FileToBePlotEnergy, unpack=True, usecols=[1, 2, indices[var_plot], err_indices[var_plot]], skip_header=0, skip_footer=0)
