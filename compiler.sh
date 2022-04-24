@@ -1,2 +1,2 @@
 #python3 plot_rotational_propagator_linear_rotor.py
-python3 FigureGeneratorAll.py
+python3 GetFiguresForPIGS.py
