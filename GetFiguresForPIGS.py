@@ -19,11 +19,9 @@ variableName1="distance"
 
 TypePlot = "Energy"
 #TypePlot = "ExactEnergy"
-#TypePlot = "Entropy"
 #TypePlot = "OrderParam"
 #TypePlot = "Energy"
 # TypePlot="ChemPot"
-# TypePlot="CorrFunc"
 
 molecule = "-p-H2O"
 molecule_rot = "H2O"
@@ -37,7 +35,7 @@ final_results_path = os.path.expanduser("~") + "/academic-project/outputs/result
 if (((RotMove == True) and (TransMove == False) and (TypePlot == "Energy")) and ((variableName == "tau") or (variableName == "beta"))):
 	beta = 0.1
 	tau = 0.002
-	numbmolecules = 11
+	numbmolecules = 2
 	numbblocks = 20000
 	numbpass = 200
 	preskipList= [0]
@@ -68,7 +66,7 @@ if (((RotMove == True) and (TransMove == False) and (TypePlot == "Energy")) and 
 	nr += 1
 	print(nr)
 	RList += [rmin+dr*i for i in range(nr)]
-	#print(RList)
+	print(RList)
 	
 	for preskip in preskipList:
 		for Rpt in RList:
