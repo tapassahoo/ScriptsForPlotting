@@ -3,9 +3,12 @@ from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 
 # Reading the file, we would like to plot.
-inputFile="/home/tapassahoo/academic-project/outputs/rotational-propagator-for-water/rho.den018_ortho"
+inputFile="/home/tapassahoo/academic-project/outputs/rotational-propagator-for-water/rho.den018_1500K_spinless"
+inputFile1="/home/tapassahoo/academic-project/outputs/rotational-propagator-for-water/rho.den018"
 rho = np.genfromtxt(inputFile, unpack=True, usecols=[3])
+rho1 = np.genfromtxt(inputFile1, unpack=True, usecols=[3])
 print(max(rho))
+print(max(rho1))
 exit()
 
 size_grid = 361
