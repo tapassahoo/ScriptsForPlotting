@@ -23,9 +23,7 @@ import os
 
 # Reading the file, we would like to plot.
 home=os.path.expanduser("~")
-inputFile=home+"/academic-project/outputs/rotational-propagator-for-water/rho.den018_ortho"
-print(inputFile)
-exit()
+inputFile=home+"/academic-project/outputs/rotational-propagator-for-water/rho.den018-ortho"
 rho = np.genfromtxt(inputFile, unpack=True, usecols=[3])
 
 size_grid = 361
@@ -35,14 +33,17 @@ theta2d, phi2d = np.meshgrid(theta, phi)
 rho2d=np.reshape(rho, (size_grid, size_grid))
 
 # Plot env is started here
-fig = plt.figure(figsize = (12,10))
-ax = plt.axes(projection='3d')
-surf = ax.plot_surface(theta2d, phi2d, rho2d, cmap = plt.cm.cividis)
+#fig = plt.figure(figsize = (12,10))
+#ax = plt.axes(projection='3d')
+#surf = ax.plot_surface(theta2d, phi2d, rho2d, cmap = plt.cm.cividis)
+fig,ax=plt.subplots(1,1)
+cp = ax.contourf(theta2d, phi2d, rho2d)
+fig.colorbar(cp) # Add a colorbar to a plot
 
 # Set axes label
 ax.set_xlabel('x', labelpad=20)
 ax.set_ylabel('y', labelpad=20)
-ax.set_zlabel('z', labelpad=20)
+#ax.set_zlabel('z', labelpad=20)
 
-fig.colorbar(surf, shrink=0.5, aspect=8)
+#fig.colorbar(surf, shrink=0.5, aspect=8)
 plt.show()
