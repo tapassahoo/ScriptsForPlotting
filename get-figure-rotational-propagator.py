@@ -17,6 +17,11 @@ __version__ = "0.0.1"
 import os
 import numpy as np
 import matplotlib.pyplot as plt
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--verbose", help="increase output verbosity", action="store_true")
+args = parser.parse_args()
 
 # Global setup for each figure
 size=24
