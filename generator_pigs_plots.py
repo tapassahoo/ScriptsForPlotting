@@ -599,7 +599,7 @@ def GetFigureEnergy_vs_R_lanczos():
 	plt.savefig(FilePlot, dpi=50, format='eps',rasterized=True)
 	plt.show()
 
-def GetFigureEnergyRot_vs_beta(TypeCal,molecule_rot,TransMove,RotMove,variableName,Rpt,gfact,dipolemoment,parameterName,parameter,numbblocks,numbpass,numbmolecules,molecule,preskip,postskip,extra_file_name,src_dir,TypePlot,purpose):
+def get_plot_energy_vs_beta(TypeCal,molecule_rot,TransMove,RotMove,variableName,Rpt,gfact,dipolemoment,parameterName,parameter,numbblocks,numbpass,numbmolecules,molecule,preskip,postskip,extra_file_name,src_dir,TypePlot,purpose):
 	ENT_TYPE=""
 	particleA=1
 	Units = support.GetUnitConverter()
