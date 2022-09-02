@@ -9,11 +9,13 @@ import matplotlib.ticker as mtick
 import matplotlib.ticker as mticker
 import numpy as np
 from matplotlib.ticker import ScalarFormatter
-from numpy import *
 from pylab import *
 from scipy.optimize import curve_fit
 
-import mypkg.pkgMoribs.support_without_parallel as support
+import mypkg
+import mypkg.moribs_runner as runner
+import mypkg.moribs_runner.support as support
+
 
 size=24
 params = {'legend.fontsize': size*0.6,
