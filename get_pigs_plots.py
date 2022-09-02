@@ -3,11 +3,17 @@ import os
 import time
 from os import system
 from subprocess import call
-
 import numpy as np
 
 import FigureGeneratorForPIGS as generator
-import mypkg.pkgMoribs.support_without_parallel as support
+
+import mypkg
+import mypkg.moribs_runner as runner
+import mypkg.moribs_runner.support as support
+
+module_path = mypkg.moribs_runner.__file__
+module_path = module_path.replace('__init__.py', '')
+
 
 TransMove = False
 RotMove = True
