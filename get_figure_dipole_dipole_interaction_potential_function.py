@@ -26,7 +26,7 @@ parser.add_argument("--verbose", help="increase output verbosity", action="store
 args = parser.parse_args()
 
 # Import the function for the global parameters used in all the figure
-pm.get_plt_params()
+pm.plot_parameters()
 
 # Reading the file, we would like to plot.
 home=os.path.expanduser("~")
