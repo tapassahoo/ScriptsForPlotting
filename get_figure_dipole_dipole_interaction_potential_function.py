@@ -32,7 +32,7 @@ pm.plot_parameters()
 home=os.path.expanduser("~")
 
 # Define data
-phi=np.pi
+phi=0#np.pi/2
 theta1 = np.linspace(0, 2.0*np.pi, 201)
 theta2 = np.linspace(0, 2.0*np.pi, 201)
 theta1_new = theta1[:,np.newaxis]
@@ -62,10 +62,14 @@ ax.set_xticklabels(tick_label)
 ax.set_yticks(tick_position)
 ax.set_yticklabels(tick_label)
  
+# displaying the title 
+plt.title(r'$\phi=0$', color='blue', pad='0.5')
+
 # Adjustment the plot
-plt.subplots_adjust(top=0.98,bottom=0.2,left=0.13,right=1,hspace=0.0,wspace=0.0)
+plt.subplots_adjust(top=0.90,bottom=0.2,left=0.13,right=1,hspace=0.0,wspace=0.0)
 
 # Saving the figure
-#outputFile=home+"/academic-project/outputs/rotational-propagator-for-water/Figure-"+file_str+".pdf"
-#plt.savefig("test.pdf", format='pdf')
+output_file=home+"/academic-project/outputs/final-pigs-outputs-for-plotting/Figure-dipole-dipole-interaction-potential-for-phi-90-degree.pdf"
+print(output_file)
+plt.savefig(output_file, format='pdf')
 plt.show()
