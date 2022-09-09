@@ -33,7 +33,7 @@ if (parameter_name == "tau"):
 if (parameter_name == "beta"):
 	variable_name = "tau"
 
-distance_flag=False
+distance_flag = True
 plot_type = "energy"
 
 if (method == "PIGS"):
@@ -87,9 +87,21 @@ if (((rotational_move) and (translational_move == False) and (plot_type ==
 					extra_file_name,
 					plot_type,
 					purpose)
-		'''
-		if ((parameter_name == "tau") and (distance_flag == True)):
-			parameterName = "beta"
-			parameter = beta
-			generator.GetFigureEnergyRot_vs_R(method, molecule_rot, translational_move, rotational_move, parameter_name, RList, gfact, dipole_moment, parameterName, parameter, numb_block, numb_pass, numb_molecule, molecule, preskip, postskip, extra_file_name, final_results_path, plot_type, purpose)
-		'''
+		if ((parameter_name == "beta") and (distance_flag)):
+			generator.get_plot_rotational_energy_vs_rpt(
+					final_result_path,
+					method,
+					molecular_system,
+					rotor,
+					numb_molecule,
+					parameter_name,
+					parameter_value,
+					rlist,
+					dipole_moment,
+					numb_block,
+					numb_pass,
+					preskip,
+					postskip,
+					extra_file_name,
+					plot_type,
+					purpose)
