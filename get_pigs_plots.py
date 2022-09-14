@@ -44,7 +44,7 @@ elif (method == "PIMC"):
 final_result_path = os.path.expanduser(
 	"~") + "/academic-project/outputs/final-" + file_name_modifier + "-outputs-for-plotting/"
 
-rlist = np.arange(3.0, 9.81, 0.2, dtype=float)
+rlist = np.arange(3.0, 10.01, 0.2, dtype=float)
 
 if (((rotational_move) and (translational_move == False) and (plot_type ==
 															  "energy")) and ((parameter_name == "tau") or (parameter_name == "beta"))):
