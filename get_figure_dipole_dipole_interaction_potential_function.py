@@ -62,14 +62,26 @@ ax.set_xticklabels(tick_label)
 ax.set_yticks(tick_position)
 ax.set_yticklabels(tick_label)
  
+if (phi == 0):
+	title_name = r'$\phi=0$'
+	str_name = "0"
+elif (phi == np.pi/2):
+	title_name = r'$\phi=90$'
+	str_name = "90"
+elif (phi == np.pi):
+	title_name = r'$\phi=180$'
+	str_name = "180"
+
+plt.rcParams['axes.titley'] = 1.0    
+plt.rcParams['axes.titlepad'] = -24
 # displaying the title 
-plt.title(r'$\phi=0$', color='blue', pad='0.5')
+plt.title(title_name, color='blue')
 
 # Adjustment the plot
-plt.subplots_adjust(top=0.90,bottom=0.2,left=0.13,right=1,hspace=0.0,wspace=0.0)
+plt.subplots_adjust(top=0.98,bottom=0.2,left=0.13,right=1,hspace=0.0,wspace=0.0)
 
 # Saving the figure
-output_file=home+"/academic-project/outputs/final-pigs-outputs-for-plotting/Figure-dipole-dipole-interaction-potential-for-phi-90-degree.pdf"
+output_file=home+"/academic-project/outputs/final-pigs-outputs-for-plotting/Figure-dipole-dipole-interaction-potential-for-phi-" + str_name + "-degree.pdf"
 print(output_file)
 plt.savefig(output_file, format='pdf')
 plt.show()
