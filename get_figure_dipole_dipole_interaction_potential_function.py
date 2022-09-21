@@ -32,56 +32,60 @@ pm.plot_parameters()
 home=os.path.expanduser("~")
 
 # Define data
-phi=0#np.pi/2
 theta1 = np.linspace(0, 2.0*np.pi, 201)
 theta2 = np.linspace(0, 2.0*np.pi, 201)
 theta1_new = theta1[:,np.newaxis]
 theta2_new = theta2[np.newaxis,:]
-# The generic function for the dipole-dipole interaction potential function
-func = np.sin(theta1_new)*np.sin(theta2_new)*np.cos(phi)-2.0*np.cos(theta1_new)*np.cos(theta2_new)
-
-# Data file generation for the contour plot.
-theta1_2d, theta2_2d = np.meshgrid(theta1, theta2)
-
-# Plot env is started here.
+#
+phi_array=np.array([0, np.pi/2])
+#
 fig,ax=plt.subplots()
-cp = ax.contourf(theta1_2d, theta2_2d, func)
-colorbar_format = '% 2.1f'
-fig.colorbar(cp, pad=0.02, format=colorbar_format)
+# The generic function for the dipole-dipole interaction potential function
+for count, phi in enumerate(phi_array):
+	print(phi)
+	func = np.sin(theta1_new)*np.sin(theta2_new)*np.cos(phi)-2.0*np.cos(theta1_new)*np.cos(theta2_new)
 
-# Set axes labels
-ax.set_xlabel(r'$\theta_1$', labelpad=10)
-ax.set_ylabel(r'$\theta_2$', labelpad=10)
+	# Data file generation for the contour plot.
+	theta1_2d, theta2_2d = np.meshgrid(theta1, theta2)
 
-# Set ticklabels
-tick_position = [0, np.pi/2, np.pi, 3*np.pi/2, 2*np.pi]
-tick_label = [r"$0$", r"$\dfrac{1}{2}\pi$", r"$\pi$", r"$\dfrac{3}{2}\pi$", r"$2\pi$"]
+	# Plot env is started here.
+	cp = ax.contourf(theta1_2d, theta2_2d, func)
+	colorbar_format = '% 2.1f'
+	fig.colorbar(cp, pad=0.02, format=colorbar_format)
 
-ax.set_xticks(tick_position)
-ax.set_xticklabels(tick_label)
-ax.set_yticks(tick_position)
-ax.set_yticklabels(tick_label)
- 
-if (phi == 0):
-	title_name = r'$\phi=0$'
-	str_name = "0"
-elif (phi == np.pi/2):
-	title_name = r'$\phi=90$'
-	str_name = "90"
-elif (phi == np.pi):
-	title_name = r'$\phi=180$'
-	str_name = "180"
+	# Set axes labels
+	ax.set_xlabel(r'$\theta_1$', labelpad=10)
+	ax.set_ylabel(r'$\theta_2$', labelpad=10)
 
-plt.rcParams['axes.titley'] = 1.0    
-plt.rcParams['axes.titlepad'] = -24
-# displaying the title 
-plt.title(title_name, color='blue')
+	# Set ticklabels
+	tick_position = [0, np.pi/2, np.pi, 3*np.pi/2, 2*np.pi]
+	tick_label = [r"$0$", r"$\dfrac{1}{2}\pi$", r"$\pi$", r"$\dfrac{3}{2}\pi$", r"$2\pi$"]
+
+	ax.set_xticks(tick_position)
+	ax.set_xticklabels(tick_label)
+	ax.set_yticks(tick_position)
+	ax.set_yticklabels(tick_label)
+	 
+	if (phi == 0):
+		title_name = r'$\phi=0$'
+		str_name = "0"
+	elif (phi == np.pi/2):
+		title_name = r'$\phi=90$'
+		str_name = "90"
+	elif (phi == np.pi):
+		title_name = r'$\phi=180$'
+		str_name = "180"
+
+	plt.rcParams['axes.titley'] = 1.0    
+	plt.rcParams['axes.titlepad'] = -24
+	# displaying the title 
+	plt.title(title_name, color='blue')
 
 # Adjustment the plot
 plt.subplots_adjust(top=0.98,bottom=0.2,left=0.13,right=1,hspace=0.0,wspace=0.0)
 
 # Saving the figure
-output_file=home+"/academic-project/outputs/final-pigs-outputs-for-plotting/Figure-dipole-dipole-interaction-potential-for-phi-" + str_name + "-degree.pdf"
+output_file=home+"/academic-project/outputs/final-pigs-outputs-for-plotting/Figure-dipole-dipole-interaction-potential.pdf"
 print(output_file)
 plt.savefig(output_file, format='pdf')
 plt.show()
