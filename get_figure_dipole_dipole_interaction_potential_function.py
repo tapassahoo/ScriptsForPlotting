@@ -32,7 +32,7 @@ pm.plot_parameters()
 home=os.path.expanduser("~")
 
 # Define data
-theta_array = np.linspace(0, 2.0*np.pi, 201)
+theta_array = np.linspace(0, 2.0*np.pi, 61)
 phi_array=np.array([0, np.pi/2])
 angle_dict = {0:"0",1:"90"}
 #
