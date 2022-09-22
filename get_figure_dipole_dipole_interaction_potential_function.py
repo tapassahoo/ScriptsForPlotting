@@ -32,6 +32,21 @@ pm.plot_parameters()
 home=os.path.expanduser("~")
 
 # Define data
+theta_array = np.linspace(0, 2.0*np.pi, 201)
+phi_array=np.array([0, np.pi/2])
+angle_dict = {0:"0",1:"90"}
+#
+# The generic function for the dipole-dipole interaction potential function
+for count, phi in enumerate(phi_array):
+	raw_output_file=home+"/academic-project/outputs/final-pigs-outputs-for-plotting/raw-data-dipole-dipole-interaction-potential-for-phi-" + angle_dict[count] + "-degree.txt"
+	file = open(raw_output_file,"w")
+	for theta1 in theta_array:
+		for theta2 in theta_array:
+			func = np.sin(theta1)*np.sin(theta2)*np.cos(phi)-2.0*np.cos(theta1)*np.cos(theta2)
+			file.write(str(theta1) + "  " + str(theta2) + "   " + str(func) + "\n")
+	file.close()
+
+# Define data
 theta1 = np.linspace(0, 2.0*np.pi, 201)
 theta2 = np.linspace(0, 2.0*np.pi, 201)
 theta1_new = theta1[:,np.newaxis]
@@ -42,7 +57,6 @@ phi_array=np.array([0, np.pi/2])
 fig,ax=plt.subplots()
 # The generic function for the dipole-dipole interaction potential function
 for count, phi in enumerate(phi_array):
-	print(phi)
 	func = np.sin(theta1_new)*np.sin(theta2_new)*np.cos(phi)-2.0*np.cos(theta1_new)*np.cos(theta2_new)
 
 	# Data file generation for the contour plot.
@@ -76,10 +90,11 @@ for count, phi in enumerate(phi_array):
 		title_name = r'$\phi=180$'
 		str_name = "180"
 
-	plt.rcParams['axes.titley'] = 1.0    
+	plt.rcParams['axes.titley'] = 1.0	
 	plt.rcParams['axes.titlepad'] = -24
 	# displaying the title 
 	plt.title(title_name, color='blue')
+	#raw_output_file=home+"/academic-project/outputs/final-pigs-outputs-for-plotting/Figure-dipole-dipole-interaction-potential-for-phi-" + str(angle) + "degree.pdf"
 
 # Adjustment the plot
 plt.subplots_adjust(top=0.98,bottom=0.2,left=0.13,right=1,hspace=0.0,wspace=0.0)
