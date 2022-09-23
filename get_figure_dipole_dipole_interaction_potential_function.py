@@ -54,9 +54,9 @@ theta2_new = theta2[np.newaxis,:]
 #
 phi_array=np.array([0, np.pi/2])
 #
-fig,ax=plt.subplots()
 # The generic function for the dipole-dipole interaction potential function
 for count, phi in enumerate(phi_array):
+	fig,ax=plt.subplots()
 	func = np.sin(theta1_new)*np.sin(theta2_new)*np.cos(phi)-2.0*np.cos(theta1_new)*np.cos(theta2_new)
 
 	# Data file generation for the contour plot.
