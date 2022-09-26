@@ -16,7 +16,7 @@ rotational_move = True
 
 molecular_system = "HF"
 rotor = "HF"
-numb_molecule = 3
+numb_molecule = 4
 
 parameter_name = "beta"
 parameter_value = 0.1
@@ -42,7 +42,7 @@ elif (method == "PIMC"):
 	file_name_modifier = "pimc"
 
 final_result_path = os.path.expanduser(
-	"~") + "/academic-project/outputs/final-" + file_name_modifier + "-outputs-for-plotting/"
+	"~") + "/academic-project/output/final-" + file_name_modifier + "-outputs-for-plotting/"
 
 rlist = np.arange(3.0, 10.01, 0.2, dtype=float)
 
