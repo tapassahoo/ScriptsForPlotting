@@ -32,13 +32,13 @@ pm.plot_parameters()
 home=os.path.expanduser("~")
 
 # Define data
-theta_array = np.linspace(0, 2.0*np.pi, 61)
+theta_array = np.linspace(0, 2.0*np.pi, 51)
 phi_array=np.array([0, np.pi/2])
 angle_dict = {0:"0",1:"90"}
 #
 # The generic function for the dipole-dipole interaction potential function
 for count, phi in enumerate(phi_array):
-	raw_output_file=home+"/academic-project/outputs/final-pigs-outputs-for-plotting/raw-data-dipole-dipole-interaction-potential-for-phi-" + angle_dict[count] + "-degree.txt"
+	raw_output_file=home+"/academic-project/output/final-pigs-outputs-for-plotting/raw-data-dipole-dipole-interaction-potential-for-phi-" + angle_dict[count] + "-degree.txt"
 	file = open(raw_output_file,"w")
 	for theta1 in theta_array:
 		for theta2 in theta_array:
@@ -100,7 +100,7 @@ for count, phi in enumerate(phi_array):
 plt.subplots_adjust(top=0.98,bottom=0.2,left=0.13,right=1,hspace=0.0,wspace=0.0)
 
 # Saving the figure
-output_file=home+"/academic-project/outputs/final-pigs-outputs-for-plotting/Figure-dipole-dipole-interaction-potential.pdf"
+output_file=home+"/academic-project/output/final-pigs-outputs-for-plotting/Figure-dipole-dipole-interaction-potential.pdf"
 print(output_file)
 plt.savefig(output_file, format='pdf')
 plt.show()
