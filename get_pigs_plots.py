@@ -29,7 +29,7 @@ if (parameter_name == "tau"):
 if (parameter_name == "beta"):
 	variable_name = "tau"
 
-distance_flag = False
+distance_flag = True
 plot_type = "energy"
 
 if (method == "PIGS"):
@@ -81,7 +81,7 @@ if (((rotational_move) and (translational_move == False) and (plot_type == "ener
 					extra_file_name,
 					plot_type,
 					purpose)
-		if ((parameter_name == "beta") and (distance_flag)):
+		if ((parameter_name == "beta") and (distance_flag == True)):
 			generator.get_plot_rotational_energy_vs_rpt(
 					final_result_path,
 					method,
