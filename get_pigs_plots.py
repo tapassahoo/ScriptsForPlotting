@@ -1,30 +1,26 @@
-import decimal
 import os
-import time
-from os import system
-from subprocess import call
 import numpy as np
-
+#
 import generator_pigs_plot as generator
-
+#
 purpose = "article"
-# purpose="ppt"
-
+#
+# Valuable informations about the simulations
 method = "PIGS"
 translational_move = False
 rotational_move = True
-
+#
 molecular_system = "HF"
 rotor = "HF"
 numb_molecule = 2
-
+#
 parameter_name = "beta"
 parameter_value = 0.1
 dipole_moment = 1.827
-
+#
 numb_block = 20000
 numb_pass = 200
-preskip_list = [0, 10000]
+preskip_list = [0, 10000, 15000]
 postskip = 0
 extra_file_name = ""
 
@@ -41,13 +37,11 @@ if (method == "PIGS"):
 elif (method == "PIMC"):
 	file_name_modifier = "pimc"
 
-final_result_path = os.path.expanduser(
-	"~") + "/academic-project/output/final-" + file_name_modifier + "-outputs-for-plotting/"
+final_result_path = os.path.join(os.path.expanduser("~"), "academic-project", "output", "final-" + file_name_modifier + "-outputs-for-plotting")
 
 rlist = np.arange(3.0, 10.01, 1.0, dtype=float)
 
-if (((rotational_move) and (translational_move == False) and (plot_type ==
-															  "energy")) and ((parameter_name == "tau") or (parameter_name == "beta"))):
+if (((rotational_move) and (translational_move == False) and (plot_type == "energy")) and ((parameter_name == "tau") or (parameter_name == "beta"))):
 	for preskip in preskip_list:
 		for value in rlist:
 			rpt_value = "{:3.1f}".format(value)
