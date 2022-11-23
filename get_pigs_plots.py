@@ -40,6 +40,7 @@ elif (method == "PIMC"):
 final_result_path = os.path.join(os.path.expanduser("~"), "academic-project", "output", "final-" + file_name_modifier + "-outputs-for-plotting")
 
 rlist = np.arange(3.0, 10.01, 0.2, dtype=float)
+energy_per_neighbours = True
 
 if (((rotational_move) and (translational_move == False) and (plot_type == "energy")) and ((parameter_name == "tau") or (parameter_name == "beta"))):
 	for preskip in preskip_list:
@@ -98,4 +99,5 @@ if (((rotational_move) and (translational_move == False) and (plot_type == "ener
 					postskip,
 					extra_file_name,
 					plot_type,
+					energy_per_neighbours,
 					purpose)
