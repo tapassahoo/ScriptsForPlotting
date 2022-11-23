@@ -12,7 +12,7 @@ rotational_move = True
 #
 molecular_system = "HF"
 rotor = "HF"
-numb_molecule = 11
+numb_molecule = 2
 #
 parameter_name = "beta"
 parameter_value = 0.1
@@ -43,7 +43,7 @@ final_result_path = os.path.join(os.path.expanduser("~"), "academic-project", "o
 rlist = np.arange(3.0, 10.01, 0.2, dtype=float)
 energy_per_neighbours = True
 
-if (((rotational_move) and (translational_move == False) and (plot_type == "energy")) and ((parameter_name == "tau") or (parameter_name == "beta"))):
+if (((rotational_move == True) and (translational_move == False)) and ((parameter_name == "tau") or (parameter_name == "beta"))):
 	for preskip in preskip_list:
 		for value in rlist:
 			rpt_value = "{:3.1f}".format(value)
