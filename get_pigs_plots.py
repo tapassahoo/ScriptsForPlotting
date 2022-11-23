@@ -30,7 +30,8 @@ if (parameter_name == "beta"):
 	variable_name = "tau"
 
 distance_flag = True
-plot_type = "energy"
+#plot_type = "energy"
+plot_type = "order_parameter"
 
 if (method == "PIGS"):
 	file_name_modifier = "pigs"
@@ -83,21 +84,41 @@ if (((rotational_move) and (translational_move == False) and (plot_type == "ener
 					plot_type,
 					purpose)
 		if ((parameter_name == "beta") and (distance_flag == True)):
-			generator.get_plot_rotational_energy_vs_rpt(
-					final_result_path,
-					method,
-					molecular_system,
-					rotor,
-					numb_molecule,
-					parameter_name,
-					parameter_value,
-					rlist,
-					dipole_moment,
-					numb_block,
-					numb_pass,
-					preskip,
-					postskip,
-					extra_file_name,
-					plot_type,
-					energy_per_neighbours,
-					purpose)
+			if (plot_type == "energy"):
+				generator.get_plot_rotational_energy_vs_rpt(
+						final_result_path,
+						method,
+						molecular_system,
+						rotor,
+						numb_molecule,
+						parameter_name,
+						parameter_value,
+						rlist,
+						dipole_moment,
+						numb_block,
+						numb_pass,
+						preskip,
+						postskip,
+						extra_file_name,
+						plot_type,
+						energy_per_neighbours,
+						purpose)
+			if (plot_type == "order_parameter"):
+				generator.get_plot_order_parameter_vs_rpt(
+						final_result_path,
+						method,
+						molecular_system,
+						rotor,
+						numb_molecule,
+						parameter_name,
+						parameter_value,
+						rlist,
+						dipole_moment,
+						numb_block,
+						numb_pass,
+						preskip,
+						postskip,
+						extra_file_name,
+						plot_type,
+						energy_per_neighbours,
+						purpose)
