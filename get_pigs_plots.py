@@ -38,10 +38,10 @@ if (method == "PIGS"):
 elif (method == "PIMC"):
 	file_name_modifier = "pimc"
 
-final_result_path = os.path.join(os.path.expanduser("~"), "academic-project", "output", "final-" + file_name_modifier + "-outputs-for-plotting")
-
 rlist = np.arange(3.0, 10.01, 0.2, dtype=float)
 energy_per_neighbours = True
+
+final_result_path = os.path.join(os.path.expanduser("~"), "academic-project", "output", "final-" + file_name_modifier + "-outputs-for-plotting")
 
 if (((rotational_move == True) and (translational_move == False)) and ((parameter_name == "tau") or (parameter_name == "beta"))):
 	for preskip in preskip_list:
