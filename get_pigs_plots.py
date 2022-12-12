@@ -4,7 +4,6 @@ from termcolor import colored
 import numpy as np
 import generator_pigs_plot as generator
 
-
 purpose = "article"
 # Valuable informations about the simulations
 method = "PIGS"
@@ -45,11 +44,10 @@ energy_per_neighbours = True
 final_result_path = os.path.join(os.path.expanduser("~"), "academic-project", "output", "final-" + file_name_modifier + "-outputs-for-plotting")
 
 print("*"*80 + "\n")
-print(colored("Developer:".ljust(30),"blue") + colored("Dr. Tapas Sahoo", "yellow") + "\n")
+print(colored("Developer ::".ljust(30),"blue") + colored("Dr. Tapas Sahoo", "yellow") + "\n")
 now = datetime.now() # current date and time
 date_time = now.strftime("%d/%m/%Y, %H:%M:%S")
-print("date and time:".capitalize().ljust(29), date_time, "\n")
-print("*"*80 + "\n")
+print("date and time ::".capitalize().ljust(29), date_time, "\n")
 
 if (((rotational_move == True) and (translational_move == False)) and ((parameter_name == "tau") or (parameter_name == "beta"))):
 	for preskip in preskip_list:
