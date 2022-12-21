@@ -3,6 +3,7 @@ from datetime import datetime
 from termcolor import colored
 import numpy as np
 import generator_pigs_plot as generator
+import get_usefull_functions as guf
 
 purpose = "article"
 # Valuable informations about the simulations
@@ -12,7 +13,7 @@ rotational_move = True
 #
 molecular_system = "HF"
 rotor = "HF"
-numb_molecule = 4
+numb_molecule = 2
 #
 parameter_name = "beta"
 parameter_value = 0.1
@@ -30,8 +31,8 @@ if (parameter_name == "beta"):
 	variable_name = "tau"
 
 distance_flag = True
-#plot_type = "energy"
-plot_type = "order_parameter"
+plot_type = "energy"
+#plot_type = "order_parameter"
 
 if (method == "PIGS"):
 	file_name_modifier = "pigs"
