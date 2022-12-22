@@ -13,7 +13,7 @@ rotational_move = True
 #
 molecular_system = "HF"
 rotor = "HF"
-numb_molecule = 12
+numb_molecule = 5
 #
 parameter_name = "beta"
 parameter_value = 0.1
@@ -31,8 +31,8 @@ if (parameter_name == "beta"):
 	variable_name = "tau"
 
 distance_flag = True
-plot_type = "energy"
-#plot_type = "order_parameter"
+#plot_type = "energy"
+plot_type = "order_parameter"
 
 if (method == "PIGS"):
 	file_name_modifier = "pigs"
