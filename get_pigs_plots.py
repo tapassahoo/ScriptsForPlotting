@@ -13,7 +13,7 @@ rotational_move = True
 #
 molecular_system = "HF"
 rotor = "HF"
-numb_molecule = 11
+numb_molecule = 12
 #
 parameter_name = "beta"
 parameter_value = 0.1
