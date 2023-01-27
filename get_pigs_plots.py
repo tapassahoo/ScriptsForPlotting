@@ -31,8 +31,8 @@ if (parameter_name == "beta"):
 	variable_name = "tau"
 
 distance_flag = True
-#plot_type = "energy"
-plot_type = "chemical potential"
+plot_type = "energy"
+#plot_type = "chemical potential"
 #plot_type = "order_parameter"
 
 if (method == "PIGS"):
