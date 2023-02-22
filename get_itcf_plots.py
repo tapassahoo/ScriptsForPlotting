@@ -19,9 +19,9 @@ parameter_name = "beta"
 parameter_value = 0.2
 dipole_moment = 1.827
 #
-numb_block = 10000
-numb_pass = 500
-preskip_list = [0, 5000]
+numb_block = 20000
+numb_pass = 200
+preskip_list = [0]
 postskip = 0
 extra_file_name = ""
 
@@ -38,7 +38,7 @@ if (method == "PIGS"):
 elif (method == "PIMC"):
 	file_name_modifier = "pimc"
 
-rlist = np.arange(3.0, 10.01, 0.2, dtype=float)
+rlist = np.arange(5.0, 10.01, 1.0, dtype=float)
 energy_per_neighbours = True
 
 final_result_path = os.path.join(os.path.expanduser("~"), "academic-project", "output", "final-" + file_name_modifier + "-outputs-for-plotting")
