@@ -21,7 +21,7 @@ dipole_moment = 1.827
 #
 numb_block = 20000
 numb_pass = 200
-preskip_list = [0]
+preskip_list = [0, 10000, 15000]
 postskip = 0
 extra_file_name = ""
 
