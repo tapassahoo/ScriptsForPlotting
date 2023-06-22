@@ -13,15 +13,19 @@ rotational_move = True
 #
 molecular_system = "HF"
 rotor = "HF"
-numb_molecule = 14
+numb_molecule = 30
 #
 parameter_name = "beta"
 parameter_value = 0.1
 dipole_moment = 1.827
 #
-numb_block = 20000
+numb_block = 5000
 numb_pass = 200
-preskip_list = [0, 10000, 15000]
+if (numb_block == 20000):
+	preskip_list = [0, 10000, 15000]
+if (numb_block == 5000):
+	preskip_list = [0, 1000]
+	
 postskip = 0
 extra_file_name = ""
 
