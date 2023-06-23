@@ -13,7 +13,7 @@ rotational_move = True
 #
 molecular_system = "HF"
 rotor = "HF"
-numb_molecule = 30
+numb_molecule = 20
 #
 parameter_name = "beta"
 parameter_value = 0.1
@@ -35,8 +35,8 @@ if (parameter_name == "beta"):
 	variable_name = "tau"
 
 distance_flag = True
-plot_type = "energy"
-#plot_type = "chemical potential"
+#plot_type = "energy"
+plot_type = "chemical_potential"
 #plot_type = "order_parameter"
 
 if (method == "PIGS"):
@@ -117,6 +117,25 @@ if (((rotational_move == True) and (translational_move == False)) and ((paramete
 						purpose)
 			if (plot_type == "order_parameter"):
 				generator.get_plot_order_parameter_vs_rpt(
+						final_result_path,
+						method,
+						molecular_system,
+						rotor,
+						numb_molecule,
+						parameter_name,
+						parameter_value,
+						rlist,
+						dipole_moment,
+						numb_block,
+						numb_pass,
+						preskip,
+						postskip,
+						extra_file_name,
+						plot_type,
+						energy_per_neighbours,
+						purpose)
+			if (plot_type == "chemical_potential"):
+				generator.get_plot_chemical_potential_vs_rotor(
 						final_result_path,
 						method,
 						molecular_system,
