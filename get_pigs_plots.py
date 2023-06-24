@@ -37,6 +37,7 @@ if (parameter_name == "beta"):
 
 distance_flag = True
 #plot_type = "energy"
+#plot_type = "eos"
 plot_type = "chemical_potential"
 #plot_type = "order_parameter"
 
@@ -137,6 +138,25 @@ if (((rotational_move == True) and (translational_move == False)) and ((paramete
 						purpose)
 			if (plot_type == "chemical_potential"):
 				generator.get_plot_chemical_potential_vs_rotor(
+						final_result_path,
+						method,
+						molecular_system,
+						rotor,
+						numb_molecule,
+						parameter_name,
+						parameter_value,
+						rlist,
+						dipole_moment,
+						numb_block,
+						numb_pass,
+						preskip,
+						postskip,
+						extra_file_name,
+						plot_type,
+						energy_per_neighbours,
+						purpose)
+			if (plot_type == "eos"):
+				generator.get_plot_eos_rotor(
 						final_result_path,
 						method,
 						molecular_system,
