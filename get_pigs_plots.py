@@ -16,7 +16,7 @@ rotor = "HF"
 numb_molecule = 30
 #
 parameter_name = "beta"
-parameter_value = 0.1
+parameter_value = 0.2
 dipole_moment = 1.827
 #
 numb_block = 5000
@@ -25,7 +25,7 @@ if (numb_block == 20000):
 	preskip_list = [0, 10000, 15000]
 if (numb_block == 5000):
 	preskip_list = [0, 1000]
-#preskip_list = [0]
+preskip_list = [0]
 	
 postskip = 0
 extra_file_name = ""
@@ -36,17 +36,17 @@ if (parameter_name == "beta"):
 	variable_name = "tau"
 
 distance_flag = True
-#plot_type = "energy"
+plot_type = "energy"
 #plot_type = "eos"
-#plot_type = "chemical_potential"
-plot_type = "order_parameter"
+plot_type = "chemical_potential"
+#plot_type = "order_parameter"
 
 if (method == "PIGS"):
 	file_name_modifier = "pigs"
 elif (method == "PIMC"):
 	file_name_modifier = "pimc"
 
-rlist = np.arange(3.0, 10.01, 0.2, dtype=float)
+rlist = np.arange(3.0, 10.01, 1.0, dtype=float)
 energy_per_neighbours = True
 
 final_result_path = os.path.join(os.path.expanduser("~"), "academic-project", "output", "final-" + file_name_modifier + "-outputs-for-plotting")
