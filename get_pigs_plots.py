@@ -46,7 +46,7 @@ if (method == "PIGS"):
 elif (method == "PIMC"):
 	file_name_modifier = "pimc"
 
-rlist = np.arange(3.0, 10.01, 1.0, dtype=float)
+rlist = np.arange(3.0, 10.01, 0.2, dtype=float)
 energy_per_neighbours = True
 
 final_result_path = os.path.join(os.path.expanduser("~"), "academic-project", "output", "final-" + file_name_modifier + "-outputs-for-plotting")
