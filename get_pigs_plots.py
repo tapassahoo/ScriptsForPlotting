@@ -13,7 +13,7 @@ rotational_move = True
 #
 molecular_system = "HF"
 rotor = "HF"
-numb_molecule = 29
+numb_molecule = 29 # Analysis is required for N=13, 22, 26, 27, 28, 29
 #
 parameter_name = "beta"
 parameter_value = 0.1
