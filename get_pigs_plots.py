@@ -13,10 +13,10 @@ rotational_move = True
 #
 molecular_system = "HF"
 rotor = "HF"
-numb_molecule = 30
+numb_molecule = 29
 #
 parameter_name = "beta"
-parameter_value = 0.2
+parameter_value = 0.1
 dipole_moment = 1.827
 #
 numb_block = 5000
@@ -25,7 +25,7 @@ if (numb_block == 20000):
 	preskip_list = [0, 10000, 15000]
 if (numb_block == 5000):
 	preskip_list = [0, 1000]
-preskip_list = [0]
+#preskip_list = [0]
 	
 postskip = 0
 extra_file_name = ""
@@ -36,10 +36,10 @@ if (parameter_name == "beta"):
 	variable_name = "tau"
 
 distance_flag = True
-plot_type = "energy"
+#plot_type = "energy"
 #plot_type = "eos"
-plot_type = "chemical_potential"
-#plot_type = "order_parameter"
+#plot_type = "chemical_potential"
+plot_type = "order_parameter"
 
 if (method == "PIGS"):
 	file_name_modifier = "pigs"
