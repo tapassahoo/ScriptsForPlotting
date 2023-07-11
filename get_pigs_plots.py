@@ -25,7 +25,7 @@ if (numb_block == 20000):
 	preskip_list = [0, 10000, 15000]
 if (numb_block == 5000):
 	preskip_list = [0, 1000]
-#preskip_list = [0]
+preskip_list = [0]
 	
 postskip = 0
 extra_file_name = ""
